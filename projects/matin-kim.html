@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matin Kim 리뉴얼 — 이재희</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16.png">
+  <link rel="shortcut icon" href="../assets/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+  <style>
+    .cs-thumb {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: linear-gradient(135deg, #1a1410 0%, #2a1f15 40%, #1a1206 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-thumb-inner {
+      display: flex;
+      gap: 1.5rem;
+      padding: 3rem;
+      width: 100%;
+      max-width: 700px;
+      opacity: 0.4;
+    }
+    .cs-thumb-bar { flex: 1; border-radius: 8px; background: rgba(255,255,255,0.15); }
+    .cs-thumb-bar:nth-child(1) { height: 120px; }
+    .cs-thumb-bar:nth-child(2) { height: 180px; }
+    .cs-thumb-bar:nth-child(3) { height: 100px; }
+    .cs-thumb-label {
+      position: absolute;
+      bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .cs-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+
+  <!-- 마우스 효과 ON/OFF 토글 -->
+  <button type="button" id="cursorModeToggle" class="cursor-mode-toggle" aria-pressed="true"
+    aria-label="마우스 커서 효과 켜기/끄기" title="마우스 커서 효과 켜기/끄기">
+    <span class="cursor-mode-toggle-dot"></span>
+    <span class="cursor-mode-toggle-label">FX</span>
+  </button>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">JH<span class="nav-logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-logo nav-logo--capsule">JH<span class="nav-logo-dot">.</span></a></li>
+      <li><a href="../index.html#about" class="nav-link">소개</a></li>
+      <li><a href="../index.html#uxui" class="nav-link">UX/UI</a></li>
+      <li><a href="../index.html#graphic" class="nav-link">그래픽</a></li>
+      <li><a href="../index.html#career" class="nav-link">경력</a></li>
+      <li><a href="../index.html#contact" class="nav-link">연락</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="메뉴">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav">
+      <a href="../index.html#about" class="mobile-nav-link">소개</a>
+      <a href="../index.html#uxui" class="mobile-nav-link">UX/UI</a>
+      <a href="../index.html#graphic" class="mobile-nav-link">그래픽</a>
+      <a href="../index.html#career" class="mobile-nav-link">경력</a>
+      <a href="../index.html#contact" class="mobile-nav-link">연락</a>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <div class="cs-hero">
+    <div class="container">
+      <a href="../index.html#uxui" class="cs-back">← 목록으로</a>
+      <div class="cs-meta">
+        <span class="cs-tag">UX/UI</span>
+        <span class="cs-tag">Web Renewal</span>
+        <span class="cs-tag">Next.js</span>
+        <span class="cs-tag">Firebase</span>
+      </div>
+      <h1 class="cs-title">Matin Kim<br>쇼핑몰 리뉴얼</h1>
+      <p class="cs-subtitle">기존 마뗑킴 쇼핑몰의 사용자 경험과 UI 구조를 분석하여 브랜드 탐색, 상품 검색, 구매 프로세스의 사용성을 개선한 웹 리뉴얼 프로젝트</p>
+      <div class="cs-hero-actions">
+        <a href="https://matin-kim.vercel.app/" target="_blank" rel="noopener" class="cs-link-btn">
+          라이브 사이트 보기 ↗
+        </a>
+        <a href="../assets/images/ppt/MatinKimPPT.pdf" download class="cs-link-btn cs-link-btn-ghost">
+          PPT 다운로드 ↓
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thumb -->
+  <div class="container">
+    <a href="https://matin-kim.vercel.app/" target="_blank" rel="noopener" class="cs-thumb-link">
+      <div class="cs-thumb">
+        <img src="../assets/images/thumb-matinkim.jpg" alt="Matin Kim 리뉴얼 스크린샷" class="cs-thumb-img">
+        <span class="cs-thumb-label">matin-kim.vercel.app</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Info Grid -->
+  <div class="container">
+    <div class="cs-info-grid">
+      <div class="cs-info-item">
+        <p class="cs-info-label">기간</p>
+        <p class="cs-info-value">2026.04 — 2026.05</p>
+      </div>
+      <div class="cs-info-item">
+        <p class="cs-info-label">팀 구성</p>
+        <p class="cs-info-value">4인 (기여도 50%)</p>
+      </div>
+      <div class="cs-info-item">
+        <p class="cs-info-label">담당</p>
+        <p class="cs-info-value">UI 퍼블리싱 · 인터랙션 · 개발</p>
+      </div>
+      <div class="cs-info-item">
+        <p class="cs-info-label">기술 스택</p>
+        <p class="cs-info-value">Next.js · React · JavaScript · Firebase · SCSS · Git</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div class="container">
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Overview</p>
+      <h2 class="cs-section-title">프로젝트 소개</h2>
+      <p class="cs-text">마뗑킴(Matin Kim)은 국내 패션 브랜드로 마뗑킴과 마틴킴 두 라인을 운영하고 있습니다. 기존 쇼핑몰의 사용자 경험을 분석한 결과, 브랜드 전환 구조가 직관적이지 않고 상품 탐색 및 구매 흐름에서 여러 문제점이 발견되었습니다.</p>
+      <p class="cs-text">4인 팀 프로젝트로 진행하였으며, 저는 메인 페이지·상품 리스트·상세페이지·장바구니·주문 페이지의 UI 퍼블리싱 및 인터랙션 구현을 주도했습니다. HTML5 시맨틱 마크업, CSS3, JavaScript, React, Next.js를 활용했으며 Git 기반 협업으로 진행했습니다.</p>
+    </div>
+
+    <!-- Problem -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Problem</p>
+      <h2 class="cs-section-title">발견한 문제점</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-col-title">UX 문제</p>
+          <div class="cs-list">
+            <div class="cs-list-item">브랜드(마뗑킴/마틴킴) 전환 구조가 직관적이지 않아 탐색성이 낮음</div>
+            <div class="cs-list-item">헤더 내 카테고리 구분이 명확하지 않아 메뉴 접근성이 떨어짐</div>
+            <div class="cs-list-item">검색 기능 외 상품 탐색 수단이 부족하여 원하는 상품 탐색이 어려움</div>
+          </div>
+        </div>
+        <div>
+          <p class="cs-col-title">UI 문제</p>
+          <div class="cs-list">
+            <div class="cs-list-item">상품 리스트의 과도한 썸네일 크기와 불균형한 간격으로 정보 밀도가 낮음</div>
+            <div class="cs-list-item">상세 페이지의 대형 이미지 중심 구조로 인해 스크롤 피로도가 높음</div>
+            <div class="cs-list-item">장바구니 → 주문 → 결제 단계별 흐름이 불명확</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solution -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Solution</p>
+      <h2 class="cs-section-title">해결 방법</h2>
+      <div class="cs-list">
+        <div class="cs-list-item">브랜드 전환 상태를 직관적으로 인식할 수 있도록 히어로 섹션 내 토글 UI 설계</div>
+        <div class="cs-list-item">Grid 기반 상품 리스트 재구성으로 정보 밀도 및 가독성 향상</div>
+        <div class="cs-list-item">필터 UI를 추가하여 카테고리별 상품 탐색 편의성 개선</div>
+        <div class="cs-list-item">상품 상세 정보와 이미지를 재배치하여 스크롤 이동 거리 최소화</div>
+        <div class="cs-list-item">장바구니 → 주문 → 결제 단계별 흐름을 고려한 화면 구조 개선</div>
+        <div class="cs-list-item">시맨틱 마크업 적용 및 CSS 구조 정리로 유지보수성 향상</div>
+        <div class="cs-list-item">AI(OpenAI Codex)를 활용한 HTML 구조 개선 및 코드 리팩토링</div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Result</p>
+      <h2 class="cs-section-title">성과</h2>
+      <div class="cs-result-grid">
+        <div class="cs-result-item">
+          <p class="cs-result-label">브랜드 접근성</p>
+          <p class="cs-result-value">토글 UI로 브랜드 전환 인지성 향상</p>
+        </div>
+        <div class="cs-result-item">
+          <p class="cs-result-label">상품 탐색</p>
+          <p class="cs-result-value">필터 기능 추가로 상품 접근성 개선</p>
+        </div>
+        <div class="cs-result-item">
+          <p class="cs-result-label">레이아웃 최적화</p>
+          <p class="cs-result-value">한 화면 내 노출 상품 수 증가</p>
+        </div>
+        <div class="cs-result-item">
+          <p class="cs-result-label">코드 품질</p>
+          <p class="cs-result-value">시맨틱 마크업 및 리팩토링으로 유지보수성 향상</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cs-section fade-in" style="text-align:center; border-top: 1px solid var(--border); padding-top: 4rem;">
+      <a href="https://matin-kim.vercel.app/" target="_blank" rel="noopener" class="cs-link-btn" style="margin: 0 auto;">
+        라이브 사이트 방문 ↗
+      </a>
+      <div style="margin-top:2rem;">
+        <a href="netflix.html" style="font-size:0.875rem; color: var(--fg2); text-decoration:none; border-bottom: 1px solid var(--border); padding-bottom:0.25rem; transition: color 0.2s;">
+          다음 프로젝트 → Netflix
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">© 2026 이재희</p>
+      <a href="../index.html" class="footer-note" style="color: var(--fg2);">← 포트폴리오로 돌아가기</a>
+    </div>
+  </footer>
+
+  <script>
+    // Cursor
+    const cursor = document.querySelector('.cursor');
+    const dot = cursor?.querySelector('.cursor-dot');
+    const ring = cursor?.querySelector('.cursor-ring');
+    if (dot && ring) {
+      document.addEventListener('mousemove', e => { dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px'; ring.style.left = e.clientX+'px'; ring.style.top = e.clientY+'px'; });
+      document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter',()=>cursor.classList.add('hovering')); el.addEventListener('mouseleave',()=>cursor.classList.remove('hovering')); });
+    }
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menuBtn.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+    // Fade-in
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+    fadeEls.forEach(el => obs.observe(el));
+  </script>
+  <script src="../assets/js/glass-surface.js" defer></script>
+  <script src="../assets/js/splash-cursor.js" defer></script>
+  <script src="../assets/js/cursor-mode.js" defer></script>
+</body>
+</html>
