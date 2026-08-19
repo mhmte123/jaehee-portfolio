@@ -36,6 +36,15 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
+    /* 어드민 갤러리 */
+    .cs-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 1.75rem; }
+    .cs-gallery figure { margin: 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .cs-gallery figure.wide { grid-column: 1 / -1; }
+    .cs-gallery img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
+    .cs-gallery figcaption { padding: 0.9rem 1.1rem 1rem; font-size: 0.85rem; line-height: 1.6; color: var(--fg2); }
+    .cs-gallery figcaption b { color: var(--fg, #fff); font-weight: 600; display: block; margin-bottom: 0.15rem; }
+    .cs-note { margin-top: 1.25rem; font-size: 0.8rem; color: var(--fg2); }
+    @media (max-width: 720px) { .cs-gallery { grid-template-columns: 1fr; } }
     .cs-thumb-img {
       width: 100%;
       height: 100%;
@@ -187,6 +196,36 @@
         <div class="cs-list-item">터치 기기의 hover·click 충돌, CSS 특정도 역전, 이미지 캐시 같은 실무 이슈를 재현·정리해 팀 문서(HANDOFF·DESIGN)로 남김</div>
         <div class="cs-list-item">AI 코딩 도구(Claude Code)를 활용해 반복 마크업, 번역 데이터 정리, 리팩토링 속도 향상</div>
       </div>
+    </div>
+
+    <!-- Admin -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Back Office</p>
+      <h2 class="cs-section-title">운영 도구 · 어드민 백오피스</h2>
+      <p class="cs-text">병원 담당자가 개발자 없이 프로모션·예약·상담·공지·전후사진을 직접 운영할 수 있도록, 공개 사이트와 같은 디자인 체계 위에 관리 화면 8종을 만들었습니다. 편집 항목은 "코드 수정 없이 병원 담당자가 바꿔야 하는 것"을 기준으로 정했고, 관리자 인가는 화면이 아니라 DB 보안 규칙(RLS)에 두어 화면을 우회해도 데이터에 닿지 못하게 했습니다.</p>
+      <div class="cs-gallery">
+        <figure class="wide">
+          <img src="../assets/images/beautystone/admin-promotions-edit.jpg" alt="프로모션 편집 화면" loading="lazy">
+          <figcaption><b>프로모션 편집</b>제목·기간·카테고리·설명·기기 뱃지·언어별 썸네일·시술 탭과 가격을 한 화면에서 편집합니다. 정적 파일이던 프로모션을 DB로 3단계(스키마 → SSR → 어드민 편집) 이관해, 저장하면 코드 배포 없이 사이트에 바로 반영됩니다. 6개 언어 탭과 자동번역 버튼으로 다국어 입력 부담을 줄였습니다.</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/images/beautystone/admin-promotions.jpg" alt="프로모션 목록" loading="lazy">
+          <figcaption><b>프로모션 목록</b>카테고리 탭·검색·노출 상태·조회수를 한눈에. 어드민과 공개 사이트의 모든 표를 하나의 규격(정렬·여백·상태 표시)으로 통일해 문서화했습니다.</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/images/beautystone/admin-reservations-detail.jpg" alt="예약 상세와 상태 처리" loading="lazy">
+          <figcaption><b>예약 관리</b>접수 → 확정 → 완료/취소 상태 흐름과 관리자 메모. 완료·취소로 바꾸는 순간 처리 시각을 자동 기록합니다. 시간대 목록은 공개 사이트 진료시간과 단일 출처를 공유합니다.</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/images/beautystone/admin-consultations.jpg" alt="상담 신청 관리" loading="lazy">
+          <figcaption><b>상담 신청</b>사이트 하단 고정 상담바로 들어온 문의를 상태별(신규·처리중·완료)로 관리합니다. 국가번호가 붙은 해외 문의도 같은 흐름으로 처리합니다.</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/images/beautystone/admin-notices-edit.jpg" alt="공지 편집기" loading="lazy">
+          <figcaption><b>공지 · 게시판 편집기</b>TipTap 기반 에디터로 본문과 이미지를 넣고, 6개 언어를 탭으로 관리합니다. 공개 렌더 시에는 허용 태그만 남기는 방식으로 안전하게 출력합니다.</figcaption>
+        </figure>
+      </div>
+      <p class="cs-note">※ 개인정보(이름·연락처·이메일·주문번호)는 흐리게 처리했습니다. 캡처의 데이터는 대부분 개발 중 입력한 테스트 값입니다.</p>
     </div>
 
     <!-- Result -->
