@@ -38,10 +38,12 @@
     }
     /* 어드민 갤러리 */
     .cs-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 1.75rem; }
-    .cs-gallery figure { margin: 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .cs-gallery figure { margin: 0; display: flex; flex-direction: column; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .cs-gallery figure.wide { grid-column: 1 / -1; }
-    .cs-gallery img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
-    .cs-gallery figcaption { padding: 0.9rem 1.1rem 1rem; font-size: 0.85rem; line-height: 1.6; color: var(--fg2); }
+    /* 캡처마다 높이가 달라 카드가 들쭉날쭉해지지 않도록 이미지 영역을 같은 비율로 고정(위쪽 기준으로 자름) */
+    .cs-gallery img { display: block; width: 100%; aspect-ratio: 16 / 10; height: auto; object-fit: cover; object-position: top center; border-bottom: 1px solid var(--border); }
+    .cs-gallery figure.wide img { aspect-ratio: 16 / 9; }
+    .cs-gallery figcaption { flex: 1; padding: 0.9rem 1.1rem 1rem; font-size: 0.85rem; line-height: 1.6; color: var(--fg2); }
     .cs-gallery figcaption b { color: var(--fg, #fff); font-weight: 600; display: block; margin-bottom: 0.15rem; }
     .cs-note { margin-top: 1.25rem; font-size: 0.8rem; color: var(--fg2); }
     @media (max-width: 720px) { .cs-gallery { grid-template-columns: 1fr; } }
