@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰티스톤의원 웹사이트 리뉴얼 — 이재희</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16.png">
+  <link rel="shortcut icon" href="../assets/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/favicon/apple-touch-icon.png">
+  <style>
+    .cs-thumb {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: #0e0c10;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-thumb-label {
+      position: absolute;
+      bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .cs-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+
+  <!-- 마우스 효과 ON/OFF 토글 -->
+  <button type="button" id="cursorModeToggle" class="cursor-mode-toggle" aria-pressed="true"
+    aria-label="마우스 커서 효과 켜기/끄기" title="마우스 커서 효과 켜기/끄기">
+    <span class="cursor-mode-toggle-dot"></span>
+    <span class="cursor-mode-toggle-label">FX</span>
+  </button>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">JH<span class="nav-logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-logo nav-logo--capsule">JH<span class="nav-logo-dot">.</span></a></li>
+      <li><a href="../index.html#about" class="nav-link">소개</a></li>
+      <li><a href="../index.html#uxui" class="nav-link">UX/UI</a></li>
+      <li><a href="../index.html#graphic" class="nav-link">그래픽</a></li>
+      <li><a href="../index.html#career" class="nav-link">경력</a></li>
+      <li><a href="../index.html#contact" class="nav-link">연락</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="메뉴">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav">
+      <a href="../index.html#about" class="mobile-nav-link">소개</a>
+      <a href="../index.html#uxui" class="mobile-nav-link">UX/UI</a>
+      <a href="../index.html#graphic" class="mobile-nav-link">그래픽</a>
+      <a href="../index.html#career" class="mobile-nav-link">경력</a>
+      <a href="../index.html#contact" class="mobile-nav-link">연락</a>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <div class="cs-hero">
+    <div class="container">
+      <a href="../index.html#uxui" class="cs-back">← 목록으로</a>
+      <div class="cs-meta">
+        <span class="cs-tag">UX/UI</span>
+        <span class="cs-tag">Web Renewal</span>
+        <span class="cs-tag">Next.js</span>
+        <span class="cs-tag">Supabase</span>
+      </div>
+      <h1 class="cs-title">뷰티스톤의원<br>웹사이트 리뉴얼</h1>
+      <p class="cs-subtitle">피부과 홈페이지를 Framer 기반 사이트에서 Next.js로 새로 구축한 실서비스 프로젝트. 브랜드 무드보드 수립부터 6개 언어 대응, 프로모션 주문 흐름, 어드민 백오피스까지 기획·디자인·프론트엔드를 전담했습니다.</p>
+      <div class="cs-hero-actions">
+        <a href="https://hongdae.beautystone1.com/ko" target="_blank" rel="noopener" class="cs-link-btn">
+          라이브 사이트 보기 ↗
+        </a>
+        <a href="https://hongdae.beautystone1.com/ko/moodboard" target="_blank" rel="noopener" class="cs-link-btn cs-link-btn-ghost">
+          브랜드 무드보드 ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thumb -->
+  <div class="container">
+    <a href="https://hongdae.beautystone1.com/ko" target="_blank" rel="noopener" class="cs-thumb-link">
+      <div class="cs-thumb">
+        <img src="../assets/images/thumb-beautystone.jpg" alt="뷰티스톤의원 리뉴얼 메인 화면" class="cs-thumb-img">
+        <span class="cs-thumb-label">hongdae.beautystone1.com</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Info Grid -->
+  <div class="container">
+    <div class="cs-info-grid">
+      <div class="cs-info-item">
+        <p class="cs-info-label">기간</p>
+        <p class="cs-info-value">2026.07 — 2026.08 (4주)</p>
+      </div>
+      <div class="cs-info-item">
+        <p class="cs-info-label">팀 구성</p>
+        <p class="cs-info-value">3인 (기여도 90%)</p>
+      </div>
+      <div class="cs-info-item">
+        <p class="cs-info-label">담당</p>
+        <p class="cs-info-value">기획 · UX/UI 디자인 · 프론트엔드 개발 · 다국어 · SEO</p>
+      </div>
+      <div class="cs-info-item">
+        <p class="cs-info-label">기술 스택</p>
+        <p class="cs-info-value">Next.js · React · TypeScript · SCSS Modules · Supabase · Vercel · GSAP · Git</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div class="container">
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Overview</p>
+      <h2 class="cs-section-title">프로젝트 소개</h2>
+      <p class="cs-text">뷰티스톤의원은 서울 합정에 있는 피부과로, 리프팅 시술을 중심으로 국내외 환자를 진료합니다. 기존 홈페이지는 Framer로 만들어져 있어 프로모션 항목이나 가격을 바꾸려면 매번 이미지를 다시 제작해야 했고, 외국인 환자를 위한 언어 대응과 사이트 안에서 상담·예약으로 이어지는 흐름이 부족했습니다.</p>
+      <p class="cs-text">이 프로젝트에서 저는 기획, UX/UI 디자인, 프론트엔드 개발을 전담했고 백엔드 담당자 1인과 결제 영역을 협업했습니다. 브랜드 무드보드를 먼저 세워 디자인 기준을 잡고, 그 기준을 디자인 토큰과 공용 컴포넌트로 옮겨 41개 페이지를 일관되게 만들었습니다. 4주 만에 실 도메인으로 전환해 현재 실제 방문자를 받고 있습니다.</p>
+    </div>
+
+    <!-- Problem -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Problem</p>
+      <h2 class="cs-section-title">발견한 문제점</h2>
+      <div class="cs-two-col">
+        <div>
+          <p class="cs-col-title">UX 문제</p>
+          <div class="cs-list">
+            <div class="cs-list-item">프로모션이 정적 이미지 한 장으로만 제공되어 시술 선택에서 상담·예약으로 이어지는 경로가 없음</div>
+            <div class="cs-list-item">대만·일본·태국·중국권 환자 유입이 있는데 언어별 안내와 상담 채널이 갖춰지지 않음</div>
+            <div class="cs-list-item">시술 정보가 장비 이름 위주로 나열되어 방문자가 자기 고민과 연결하기 어려움</div>
+          </div>
+        </div>
+        <div>
+          <p class="cs-col-title">UI · 운영 문제</p>
+          <div class="cs-list">
+            <div class="cs-list-item">브랜드 톤의 기준 문서가 없어 페이지마다 색·서체·간격이 제각각</div>
+            <div class="cs-list-item">콘텐츠 갱신을 디자인 툴에 의존해 병원 담당자가 직접 수정할 수 없음</div>
+            <div class="cs-list-item">구조화 데이터, 언어별 대체 주소, 공유 이미지 같은 검색·공유 기반이 없음</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solution -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Solution</p>
+      <h2 class="cs-section-title">해결 방법</h2>
+      <div class="cs-list">
+        <div class="cs-list-item">브랜드 무드보드(컨셉·로고·컬러·타이포·모션 8개 보드)를 먼저 세우고, 이를 디자인 토큰 단일 출처와 공용 UI 컴포넌트로 옮겨 전 페이지에 적용</div>
+        <div class="cs-list-item">프로모션을 DB 기반으로 전환해 장바구니 → 일정 선택 → 예약 접수 → 비회원 조회까지 사이트 안에서 완결되는 흐름 설계</div>
+        <div class="cs-list-item">한국어를 기준 스키마로 두는 6개 언어(ko·en·ja·th·zh·tw) 체계 구축. 언어 선택 대문, 언어별 상담 채널(카카오·LINE·WhatsApp·위챗) 분기</div>
+        <div class="cs-list-item">어드민 백오피스 8종(프로모션·예약·상담·회원·공지·게시판·전후사진) 제작으로 병원 담당자가 코드 수정 없이 콘텐츠 편집</div>
+        <div class="cs-list-item">시술 랜딩 15개 섹션 기획·구현: 풀페이지 스크롤, 배경 영상, WebGL 물결, 부위별 인터랙션, 모바일 전면 재설계</div>
+        <div class="cs-list-item">구조화 데이터, hreflang·canonical, OG 이미지, robots 정비로 검색·공유 기반 마련. 의료광고 규정을 고려해 완곡 표현 유지, 별점 스키마와 근거 없는 '최초' 표현은 제외</div>
+        <div class="cs-list-item">터치 기기의 hover·click 충돌, CSS 특정도 역전, 이미지 캐시 같은 실무 이슈를 재현·정리해 팀 문서(HANDOFF·DESIGN)로 남김</div>
+        <div class="cs-list-item">AI 코딩 도구(Claude Code)를 활용해 반복 마크업, 번역 데이터 정리, 리팩토링 속도 향상</div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="cs-section fade-in">
+      <p class="cs-section-label">Result</p>
+      <h2 class="cs-section-title">성과</h2>
+      <div class="cs-result-grid">
+        <div class="cs-result-item">
+          <p class="cs-result-label">실서비스 전환</p>
+          <p class="cs-result-value">4주 만에 실 도메인 전환, 41개 페이지 운영 중</p>
+        </div>
+        <div class="cs-result-item">
+          <p class="cs-result-label">다국어</p>
+          <p class="cs-result-value">6개 언어 전면 대응, 언어별 상담 채널 연결</p>
+        </div>
+        <div class="cs-result-item">
+          <p class="cs-result-label">운영 자립</p>
+          <p class="cs-result-value">어드민으로 병원 담당자가 직접 콘텐츠 편집</p>
+        </div>
+        <div class="cs-result-item">
+          <p class="cs-result-label">브랜드 일관성</p>
+          <p class="cs-result-value">무드보드 → 토큰 → 컴포넌트로 전 페이지 통일</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cs-section fade-in" style="text-align:center; border-top: 1px solid var(--border); padding-top: 4rem;">
+      <a href="https://hongdae.beautystone1.com/ko" target="_blank" rel="noopener" class="cs-link-btn" style="margin: 0 auto;">
+        라이브 사이트 방문 ↗
+      </a>
+      <div style="margin-top:2rem;">
+        <a href="matin-kim.html" style="font-size:0.875rem; color: var(--fg2); text-decoration:none; border-bottom: 1px solid var(--border); padding-bottom:0.25rem; transition: color 0.2s;">
+          다음 프로젝트 → Matin Kim
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-copy">© 2026 이재희</p>
+      <a href="../index.html" class="footer-note" style="color: var(--fg2);">← 포트폴리오로 돌아가기</a>
+    </div>
+  </footer>
+
+  <script>
+    // Cursor
+    const cursor = document.querySelector('.cursor');
+    const dot = cursor?.querySelector('.cursor-dot');
+    const ring = cursor?.querySelector('.cursor-ring');
+    if (dot && ring) {
+      document.addEventListener('mousemove', e => { dot.style.left = e.clientX+'px'; dot.style.top = e.clientY+'px'; ring.style.left = e.clientX+'px'; ring.style.top = e.clientY+'px'; });
+      document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter',()=>cursor.classList.add('hovering')); el.addEventListener('mouseleave',()=>cursor.classList.remove('hovering')); });
+    }
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menuBtn.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+    // Fade-in
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+    fadeEls.forEach(el => obs.observe(el));
+  </script>
+  <script src="../assets/js/glass-surface.js" defer></script>
+  <script src="../assets/js/splash-cursor.js" defer></script>
+  <script src="../assets/js/cursor-mode.js" defer></script>
+</body>
+</html>
