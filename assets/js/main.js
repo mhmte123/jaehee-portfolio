@@ -145,6 +145,12 @@ const galleryItems = [
   { src: 'assets/images/graphic/web/더마름다이어트_메인홈_7.png', category: 'web', title: '더마름다이어트 메인홈 7', desc: '웹 디자인' },
 ];
 
+// macOS에서 저장된 한글 파일 경로는 NFD일 수 있지만, Netlify(Linux) 배포본의
+// 파일명은 NFC로 보존된다. 배포 환경에서도 같은 URL을 요청하도록 한 가지 형식으로 통일한다.
+galleryItems.forEach(item => {
+  item.src = item.src.normalize('NFC');
+});
+
 /* ── Canvas Particles ── */
 class ParticleSystem {
   constructor(canvas) {
