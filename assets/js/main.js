@@ -24,11 +24,11 @@ const galleryItems = [
   { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_1.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 1', desc: 'SNS 피드 디자인' },
 
   // 배너
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-01.png', category: 'banner', title: '배너 디자인 1', desc: '배너 디자인' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-02.png', category: 'banner', title: '배너 디자인 2', desc: '배너 디자인' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-03.jpg', category: 'banner', title: '배너 디자인 3', desc: '배너 디자인' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-04.jpg', category: 'banner', title: '배너 디자인 4', desc: '배너 디자인' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-05.jpg', category: 'banner', title: '배너 디자인 5', desc: '배너 디자인' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-01.png', category: 'banner', title: 'AI 광고 영상 제작', desc: '광고 영상 제작 서비스 프로모션 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-02.png', category: 'banner', title: 'AI 제품 광고 영상', desc: '뷰티 제품 SNS 홍보 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-03.jpg', category: 'banner', title: '도담한방병원 엘라비에 리투오', desc: '병원 시술 프로모션 상세 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-04.jpg', category: 'banner', title: '도담한방병원 남성 제모 이벤트', desc: '11월 오픈 프로모션 상세 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-05.jpg', category: 'banner', title: '도담한방병원 여성 제모 이벤트', desc: '11월 오픈 프로모션 상세 배너' },
   { src: 'assets/images/graphic/banner/24clinic.jpg', category: 'banner', title: '24인치의원', desc: 'SNS 피드 디자인' },
   { src: 'assets/images/graphic/banner/aruda.jpg', category: 'banner', title: '아루다', desc: 'SNS 피드 디자인' },
   { src: 'assets/images/graphic/banner/beaverclean.jpg', category: 'banner', title: '비버클린', desc: 'SNS 피드 디자인' },
@@ -155,6 +155,39 @@ const galleryItems = [
 galleryItems.forEach(item => {
   item.src = item.src.normalize('NFC');
 });
+
+function getGalleryThumbnail(src) {
+  if (!src.startsWith('assets/images/graphic/')) return src;
+  const relative = src.slice('assets/images/graphic/'.length).replace(/\.[^.]+$/, '.webp');
+  return `assets/images/graphic/thumbs/${relative}`;
+}
+
+function getGallerySeriesKey(item) {
+  const deviceVariant = item.title.match(/^(.*?)(?: PC| 모바일)(?: \d+)?$/);
+  if (deviceVariant) return `${item.category}:${deviceVariant[1]}`;
+  const numberedVariant = item.title.match(/^(.*?) \d+$/);
+  if (numberedVariant) return `${item.category}:${numberedVariant[1]}`;
+  return `${item.category}:${item.title}`;
+}
+
+function getGroupedGalleryItems() {
+  const buckets = new Map();
+  galleryItems.forEach(item => {
+    const key = getGallerySeriesKey(item);
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(item);
+  });
+
+  const emitted = new Set();
+  return galleryItems.flatMap(item => {
+    const key = getGallerySeriesKey(item);
+    if (emitted.has(key)) return [];
+    emitted.add(key);
+    const variants = buckets.get(key);
+    const seriesTitle = variants.length > 1 ? key.slice(key.indexOf(':') + 1) : item.title;
+    return [{ ...item, title: seriesTitle, variants }];
+  });
+}
 
 /* ── Canvas Particles ── */
 class ParticleSystem {
@@ -438,20 +471,23 @@ function buildGallery() {
   const container = document.getElementById('gallery');
   if (!container) return;
 
-  const deletedSrcs = JSON.parse(localStorage.getItem('deleted_gallery') || '[]');
-
-  galleryItems.filter(item => !deletedSrcs.includes(item.src)).forEach(item => {
+  const groupedItems = getGroupedGalleryItems();
+  groupedItems.forEach(item => {
     const el = document.createElement('div');
     el.className = 'gallery-item revealing';
-    el.draggable = true;
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-label', `${item.title} 상세 보기`);
     el.dataset.category = item.category;
     el.dataset.src   = item.src;
     el.dataset.title = item.title;
-    el.dataset.desc  = item.desc;
+    el.dataset.desc  = item.variants.length > 1 ? `${item.desc} · ${item.variants.length}개 시리즈` : item.desc;
+    el.dataset.variants = JSON.stringify(item.variants);
 
     const img = document.createElement('img');
     img.alt = item.title;
     img.loading = 'lazy';
+    img.decoding = 'async';
 
     img.onerror = () => {
       img.remove();
@@ -460,38 +496,22 @@ function buildGallery() {
       ph.textContent = item.title;
       el.insertBefore(ph, el.firstChild);
     };
-    img.src = item.src;
+    img.src = getGalleryThumbnail(item.src);
 
     const overlay = document.createElement('div');
     overlay.className = 'gallery-item-overlay';
     overlay.innerHTML = `
       <div class="gallery-item-info">
         <h4>${item.title}</h4>
-        <p>${item.desc}</p>
+        <p>${item.variants.length > 1 ? `${item.desc} · ${item.variants.length}개 시리즈` : item.desc}</p>
       </div>`;
-
-    const delBtn = document.createElement('button');
-    delBtn.className = 'gallery-delete-btn';
-    delBtn.innerHTML = '✕';
-    delBtn.title = '삭제';
-    delBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      if (window._showDeleteConfirm) window._showDeleteConfirm(el, null);
-    });
-
-    const dragHandle = document.createElement('div');
-    dragHandle.className = 'gallery-drag-handle';
-    dragHandle.innerHTML = '⠿';
-    dragHandle.title = '드래그해서 순서 변경';
 
     el.appendChild(img);
     el.appendChild(overlay);
-    el.appendChild(delBtn);
-    el.appendChild(dragHandle);
     container.appendChild(el);
   });
 
-  if (window._applyGalleryOrder) window._applyGalleryOrder();
+  updateFilterCounts();
 
   // 그래픽 디자인 섹션이 화면에 들어올 때 카드가 순차적으로 열리는 모션
   const galleryEntranceObserver = new IntersectionObserver(entries => {
@@ -593,20 +613,47 @@ function updateLoadMore() {
   } else {
     btn.style.display = 'none';
   }
+  updateGalleryStatus();
+}
+
+function updateGalleryStatus() {
+  const status = document.getElementById('galleryStatus');
+  if (!status) return;
+  const active = document.querySelector('.filter-btn.active');
+  const label = active?.dataset.filter === 'all'
+    ? '전체 작품'
+    : `${active?.childNodes[0]?.textContent?.trim() || '선택 카테고리'} 작품`;
+  const filtered = [...document.querySelectorAll('.gallery-item:not(.hidden)')];
+  const shown = filtered.filter(el => !el.classList.contains('page-hidden')).length;
+  status.textContent = `${label} ${filtered.length}개 중 ${shown}개 표시`;
+}
+
+function updateFilterCounts() {
+  const items = [...document.querySelectorAll('.gallery-item')];
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const filter = btn.dataset.filter;
+    const count = filter === 'all'
+      ? items.length
+      : items.filter(item => item.dataset.category === filter).length;
+    const countEl = btn.querySelector('.filter-count');
+    if (countEl) countEl.textContent = count;
+  });
 }
 
 function initGalleryFilter() {
   const btns  = document.querySelectorAll('.filter-btn');
-  const items = document.querySelectorAll('.gallery-item');
-  if (!btns.length || !items.length) return;
+  if (!btns.length) return;
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       btns.forEach(b => b.classList.remove('active'));
+      btns.forEach(b => b.setAttribute('aria-pressed', 'false'));
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
 
       const filter = btn.dataset.filter;
       const newlyShown = [];
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach(item => {
         const show = filter === 'all' || item.dataset.category === filter;
         if (show && item.classList.contains('hidden')) newlyShown.push(item);
@@ -664,13 +711,17 @@ function initGalleryModal() {
 
   let currentIndex = 0;
   let visibleItems = [];
+  let lastFocusedElement = null;
+  let imageLoadToken = 0;
 
   function getVisibleItems() {
-    return [...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')].map(el => ({
-      src:   el.dataset.src,
-      title: el.dataset.title,
-      desc:  el.dataset.desc
-    }));
+    return [...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')].flatMap(el => {
+      try {
+        return JSON.parse(el.dataset.variants || '[]');
+      } catch (error) {
+        return [{ src: el.dataset.src, title: el.dataset.title, desc: el.dataset.desc }];
+      }
+    });
   }
 
   function openModal(index) {
@@ -678,31 +729,49 @@ function initGalleryModal() {
     currentIndex = index;
     showItem(currentIndex);
     modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.removeAttribute('inert');
     modal.scrollTop = 0;
     document.body.style.overflow = 'hidden';
+    lastFocusedElement = document.activeElement;
+    requestAnimationFrame(() => closeBtn.focus());
   }
 
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
+    modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('inert', '');
   }
 
   function showItem(index) {
     const item = visibleItems[index];
     if (!item) return;
-    modalImg.style.opacity = '0';
-    modalImg.style.transform = 'scale(0.97)';
-    modalImg.onload = () => {
-      modalImg.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-      modalImg.style.opacity = '1';
-      modalImg.style.transform = 'scale(1)';
-    };
-    modalImg.src = item.src;
+    const token = ++imageLoadToken;
+    modalImg.style.opacity = '1';
+    modalImg.style.transform = 'scale(1)';
+    modalImg.src = getGalleryThumbnail(item.src);
     modalImg.alt = item.title;
+
+    const fullImage = new Image();
+    fullImage.decoding = 'async';
+    fullImage.onload = () => {
+      if (token !== imageLoadToken) return;
+      modalImg.style.opacity = '0';
+      modalImg.style.transform = 'scale(0.985)';
+      modalImg.src = item.src;
+      modalImg.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      requestAnimationFrame(() => {
+        modalImg.style.opacity = '1';
+        modalImg.style.transform = 'scale(1)';
+      });
+    };
+    fullImage.src = item.src;
     modalTitle.textContent = item.title;
     modalDesc.textContent = item.desc;
-    prevBtn.style.opacity = index === 0 ? '0.3' : '1';
-    nextBtn.style.opacity = index === visibleItems.length - 1 ? '0.3' : '1';
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === visibleItems.length - 1;
     modal.scrollTop = 0;
   }
 
@@ -713,6 +782,13 @@ function initGalleryModal() {
     visibleItems = getVisibleItems();
     const visIdx = visibleItems.findIndex(v => v.src === item.dataset.src);
     openModal(visIdx >= 0 ? visIdx : 0);
+  });
+  document.getElementById('gallery').addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const item = e.target.closest('.gallery-item');
+    if (!item) return;
+    e.preventDefault();
+    item.click();
   });
 
   closeBtn.addEventListener('click', closeModal);
@@ -730,6 +806,19 @@ function initGalleryModal() {
     if (e.key === 'Escape') closeModal();
     if (e.key === 'ArrowLeft'  && currentIndex > 0) showItem(--currentIndex);
     if (e.key === 'ArrowRight' && currentIndex < visibleItems.length - 1) showItem(++currentIndex);
+    if (e.key === 'Tab') {
+      const focusable = [...modal.querySelectorAll('button:not([disabled])')];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 }
 
@@ -782,7 +871,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initGalleryFilter();
   initGalleryModal();
   initResumeModal();
-  window._applyPageLimit = applyPageLimit;
   initActiveNavHighlight();
 
   // GSAP ScrollTrigger (optional enhancement)

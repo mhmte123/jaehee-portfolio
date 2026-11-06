@@ -297,16 +297,18 @@
     <div class="container">
       <span class="section-label">Graphic Design</span>
       <h2 class="section-heading">그래픽 디자인</h2>
-      <div class="filter-bar">
-        <button class="filter-btn" data-filter="banner">배너</button>
-        <button class="filter-btn" data-filter="detail">상세페이지</button>
-        <button class="filter-btn" data-filter="package">패키지</button>
-        <button class="filter-btn" data-filter="logo">로고</button>
-        <button class="filter-btn" data-filter="web">웹디자인</button>
-        <button class="gallery-add-btn" id="galleryAddBtn" style="display:none">+ 새로 등록하기</button>
-        <button class="gallery-reorder-btn" id="galleryReorderBtn" style="display:none">⇕ 순서 변경</button>
+      <div class="filter-bar" aria-label="그래픽 디자인 카테고리">
+        <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">전체 <span class="filter-count">85</span></button>
+        <button type="button" class="filter-btn" data-filter="banner" aria-pressed="false">배너 <span class="filter-count">46</span></button>
+        <button type="button" class="filter-btn" data-filter="detail" aria-pressed="false">상세페이지 <span class="filter-count">21</span></button>
+        <button type="button" class="filter-btn" data-filter="package" aria-pressed="false">패키지 <span class="filter-count">10</span></button>
+        <button type="button" class="filter-btn" data-filter="logo" aria-pressed="false">로고 <span class="filter-count">2</span></button>
+        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">웹디자인 <span class="filter-count">2</span></button>
+        <button type="button" class="filter-btn" data-filter="blog" aria-pressed="false">블로그 <span class="filter-count">3</span></button>
+        <button type="button" class="filter-btn" data-filter="photo" aria-pressed="false">사진 <span class="filter-count">1</span></button>
       </div>
-      <div class="gallery" id="gallery"></div>
+      <p class="sr-only" id="galleryStatus" aria-live="polite">전체 프로젝트 85개 중 12개 표시</p>
+      <div class="gallery" id="gallery" aria-describedby="galleryStatus"></div>
     </div>
   </section>
 
@@ -449,13 +451,13 @@
   </section>
 
   <!-- Gallery Modal -->
-  <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true">
-    <div class="gallery-modal-backdrop" id="modalBackdrop"></div>
-    <button class="gallery-modal-close" id="modalClose" aria-label="닫기">✕</button>
-    <button class="gallery-modal-nav prev" id="modalPrev" aria-label="이전">‹</button>
-    <button class="gallery-modal-nav next" id="modalNext" aria-label="다음">›</button>
+  <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle" inert>
+    <div class="gallery-modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+    <button type="button" class="gallery-modal-close" id="modalClose" aria-label="작품 상세 닫기">✕</button>
+    <button type="button" class="gallery-modal-nav prev" id="modalPrev" aria-label="이전 작품">‹</button>
+    <button type="button" class="gallery-modal-nav next" id="modalNext" aria-label="다음 작품">›</button>
     <div class="gallery-modal-box">
-      <img class="gallery-modal-img" id="modalImg" src="" alt="">
+      <img class="gallery-modal-img" id="modalImg" src="" alt="" decoding="async">
       <div class="gallery-modal-info">
         <p class="gallery-modal-title" id="modalTitle"></p>
         <p class="gallery-modal-desc" id="modalDesc"></p>
@@ -731,97 +733,11 @@
     </div>
   </div>
 
-  <!-- 관리자 패널 -->
-  <div class="admin-panel" id="adminPanel" aria-hidden="true">
-    <div class="admin-drawer">
-      <div class="admin-header">
-        <h3 class="admin-title">관리자 로그인</h3>
-        <button class="admin-close-btn" id="adminCloseBtn" aria-label="닫기">✕</button>
-      </div>
-
-      <!-- 로그인 -->
-      <div id="adminLoginSection">
-        <p class="admin-label">비밀번호</p>
-        <input type="password" id="adminPassword" class="admin-input" placeholder="비밀번호 입력">
-        <p class="admin-error" id="adminPwError"></p>
-        <button class="admin-btn" id="adminLoginSubmit">확인</button>
-      </div>
-
-      <!-- 업로드 폼 -->
-      <div id="adminUploadSection" style="display:none">
-        <label for="adminFile" class="admin-file-label">
-          <span class="admin-file-icon">＋</span>
-          <span>이미지 선택 또는 드래그</span>
-          <input type="file" id="adminFile" accept="image/*" class="admin-file-input">
-        </label>
-        <img id="adminPreview" class="admin-preview" alt="미리보기" style="display:none">
-
-        <select id="adminCategory" class="admin-input">
-          <option value="banner">배너</option>
-          <option value="detail">상세페이지</option>
-          <option value="blog">블로그 스킨</option>
-          <option value="package">패키지</option>
-          <option value="logo">로고</option>
-          <option value="web">웹디자인</option>
-          <option value="photo">사진촬영</option>
-        </select>
-
-        <input type="text" id="adminTitle" class="admin-input" placeholder="제목 *">
-        <input type="text" id="adminDesc"  class="admin-input" placeholder="설명 (선택)">
-
-        <div id="adminProgressWrap" class="admin-progress-wrap" style="display:none">
-          <div id="adminProgressBar" class="admin-progress-bar"></div>
-        </div>
-
-        <p id="adminMsg" class="admin-msg"></p>
-        <button class="admin-btn" id="adminUploadSubmit">업로드</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Login Success Modal -->
-  <div class="upload-success-modal" id="loginSuccessModal">
-    <div class="upload-success-box">
-      <div class="upload-success-icon">✓</div>
-      <h3 class="upload-success-title">로그인 완료!</h3>
-      <p class="upload-success-desc">그래픽 디자인 섹션에서 이미지를 등록할 수 있어요.</p>
-      <button class="upload-success-btn" id="loginSuccessClose">확인</button>
-    </div>
-  </div>
-
-  <!-- Upload Success Modal -->
-  <div class="upload-success-modal" id="uploadSuccessModal">
-    <div class="upload-success-box">
-      <div class="upload-success-icon">✓</div>
-      <h3 class="upload-success-title">업로드 완료!</h3>
-      <p class="upload-success-desc">갤러리에 이미지가 추가됐어요.</p>
-      <button class="upload-success-btn" id="uploadSuccessClose">확인</button>
-    </div>
-  </div>
-
-  <!-- Gallery Reorder Modal -->
-  <div class="reorder-modal" id="reorderModal">
-    <div class="reorder-modal-backdrop" id="reorderModalBackdrop"></div>
-    <div class="reorder-modal-box">
-      <div class="reorder-modal-header">
-        <h3 class="reorder-modal-title">이미지 순서 변경</h3>
-        <button class="reorder-modal-close" id="reorderModalClose" aria-label="닫기">✕</button>
-      </div>
-      <p class="reorder-modal-hint">목록을 위아래로 드래그하거나 화살표 버튼으로 순서를 바꾼 뒤 저장해주세요.</p>
-      <div class="reorder-list" id="reorderList"></div>
-      <div class="reorder-modal-actions">
-        <button class="reorder-cancel-btn" id="reorderCancelBtn">취소</button>
-        <button class="reorder-save-btn" id="reorderSaveBtn">저장</button>
-      </div>
-    </div>
-  </div>
-
   <footer class="footer">
     <div class="container">
       <p class="footer-copy">© 2026 이재희. All rights reserved.</p>
       <p class="footer-note">UX/UI Designer & Frontend-ready</p>
       <p class="footer-visitors">Total visitors <span id="visitorCount">—</span> · Today <span id="todayVisitorCount">—</span></p>
-      <button class="footer-admin-btn" id="footerAdminBtn" aria-label="관리자">관리자 로그인 →</button>
     </div>
   </footer>
 
@@ -879,7 +795,6 @@
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/decrypted-text.js" defer></script>
   <script src="assets/js/fuzzy-text.js" defer></script>
-  <script type="module" src="assets/js/admin.js"></script>
   <script src="assets/js/splash-cursor.js" defer></script>
   <script src="assets/js/cursor-mode.js" defer></script>
 </body>
