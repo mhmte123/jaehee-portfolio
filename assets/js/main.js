@@ -452,35 +452,6 @@ function initSkillBarCounts() {
 }
 
 /* ── Gallery ── */
-// 멀티컬럼(masonry) 레이아웃에서는 DOM 순서가 컬럼1 전체 → 컬럼2 전체 →
-// 컬럼3 전체로 이어져서, 그 순서대로 스태거하면 "오른쪽만 나중에 열리는"
-// 느낌이 든다. 실제 화면 좌표(offsetTop/offsetLeft) 기준으로 위→아래,
-// 왼쪽→오른쪽(Z자) 순서로 다시 정렬해서 진짜 자연스러운 순서로 열리게 한다.
-function sortByVisualOrder(items) {
-  const rowThreshold = 32; // px — 이 안의 top 차이는 같은 줄로 취급
-  return [...items]
-    .map(el => ({ el, top: el.offsetTop, left: el.offsetLeft }))
-    .sort((a, b) => {
-      const rowDiff = Math.round(a.top / rowThreshold) - Math.round(b.top / rowThreshold);
-      if (rowDiff !== 0) return rowDiff;
-      return a.left - b.left;
-    })
-    .map(o => o.el);
-}
-
-// 갤러리 카드를 자연스럽게(순차적으로) 열어 보여주는 공용 헬퍼
-function revealGalleryItems(items, stagger = 60) {
-  if (!items.length) return;
-  const ordered = sortByVisualOrder(items);
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      ordered.forEach((el, i) => {
-        setTimeout(() => el.classList.remove('revealing'), i * stagger);
-      });
-    });
-  });
-}
-
 function buildGallery() {
   const container = document.getElementById('gallery');
   if (!container) return;
@@ -488,7 +459,7 @@ function buildGallery() {
   const groupedItems = getGroupedGalleryItems();
   groupedItems.forEach(item => {
     const el = document.createElement('div');
-    el.className = 'gallery-item revealing';
+    el.className = 'gallery-item';
     el.setAttribute('role', 'button');
     el.setAttribute('tabindex', '0');
     el.setAttribute('aria-label', `${item.title} 상세 보기`);
@@ -526,19 +497,6 @@ function buildGallery() {
   });
 
   updateFilterCounts();
-
-  // 그래픽 디자인 섹션이 화면에 들어올 때 카드가 순차적으로 열리는 모션
-  const galleryEntranceObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const items = [...container.querySelectorAll('.gallery-item.revealing')]
-          .filter(el => !el.classList.contains('hidden') && !el.classList.contains('page-hidden'));
-        revealGalleryItems(items, 50);
-        galleryEntranceObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-  galleryEntranceObserver.observe(container);
 
 }
 

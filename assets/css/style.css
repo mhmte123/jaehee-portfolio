@@ -1551,11 +1551,6 @@ body.cursor-mode-off .cursor-mode-toggle {
   display: none;
 }
 
-.gallery-item.revealing {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
 .gallery-load-more {
   display: none;
   margin: 2rem auto 0;
@@ -2770,10 +2765,6 @@ body.cursor-mode-off .cursor-mode-toggle {
     animation-iteration-count: 1 !important;
   }
 
-  .gallery-item.revealing {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 .sr-only {
