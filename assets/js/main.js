@@ -174,6 +174,8 @@ function getGalleryThumbnail(src) {
 }
 
 function getGallerySeriesKey(item) {
+  // 홈페이지 화면은 각각 독립된 작업물이므로 시리즈 카드로 묶지 않는다.
+  if (item.category === 'web') return `${item.category}:${item.title}`;
   const deviceVariant = item.title.match(/^(.*?)(?: PC| 모바일)(?: \d+)?$/);
   if (deviceVariant) return `${item.category}:${deviceVariant[1]}`;
   const numberedVariant = item.title.match(/^(.*?) \d+$/);
@@ -447,8 +449,6 @@ function initSkillBarCounts() {
 }
 
 /* ── Gallery ── */
-const GALLERY_PAGE_SIZE = 12;
-
 // 멀티컬럼(masonry) 레이아웃에서는 DOM 순서가 컬럼1 전체 → 컬럼2 전체 →
 // 컬럼3 전체로 이어져서, 그 순서대로 스태거하면 "오른쪽만 나중에 열리는"
 // 느낌이 든다. 실제 화면 좌표(offsetTop/offsetLeft) 기준으로 위→아래,
@@ -537,51 +537,11 @@ function buildGallery() {
   }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
   galleryEntranceObserver.observe(container);
 
-  // 더보기 버튼 생성
-  const btn = document.createElement('button');
-  btn.id = 'gallery-load-more';
-  btn.className = 'gallery-load-more';
-  container.insertAdjacentElement('afterend', btn);
-
-  btn.addEventListener('click', () => {
-    if (btn.disabled) return;
-    const hidden = [...document.querySelectorAll('.gallery-item.page-hidden')];
-    const toReveal = hidden.slice(0, GALLERY_PAGE_SIZE);
-    if (!toReveal.length) return;
-
-    btn.disabled = true;
-
-    toReveal.forEach(el => el.classList.remove('page-hidden'));
-    updateLoadMore();
-    // 기존 카드는 이동시키지 않고, 새 카드만 아래에 추가한다. 이 방식은
-    // 브라우저의 스크롤 보정이나 버튼 포커스 이동을 일으키지 않는다.
-    toReveal.forEach(item => item.classList.add('revealing'));
-    revealGalleryItems(toReveal, 55);
-    setTimeout(() => { btn.disabled = false; }, 360);
-  });
 }
 
 function applyPageLimit() {
-  const allItems = [...document.querySelectorAll('.gallery-item')];
-  // 현재 필터에 보이는 아이템만 대상
-  const visible = allItems.filter(el => !el.classList.contains('hidden'));
-  // page-hidden 초기화
-  allItems.forEach(el => el.classList.remove('page-hidden'));
-  // 페이지 초과분 숨기기
-  visible.slice(GALLERY_PAGE_SIZE).forEach(el => el.classList.add('page-hidden'));
-  updateLoadMore();
-}
-
-function updateLoadMore() {
-  const btn = document.getElementById('gallery-load-more');
-  if (!btn) return;
-  const remaining = document.querySelectorAll('.gallery-item.page-hidden').length;
-  if (remaining > 0) {
-    btn.textContent = `더보기 +${remaining}`;
-    btn.style.display = 'block';
-  } else {
-    btn.style.display = 'none';
-  }
+  // 전체 작업물을 즉시 노출한다. 이전 페이지 제한 상태가 남아 있으면 해제한다.
+  document.querySelectorAll('.gallery-item.page-hidden').forEach(item => item.classList.remove('page-hidden'));
   updateGalleryStatus();
 }
 
@@ -621,20 +581,13 @@ function initGalleryFilter() {
       btn.setAttribute('aria-pressed', 'true');
 
       const filter = btn.dataset.filter;
-      const newlyShown = [];
       const items = document.querySelectorAll('.gallery-item');
       items.forEach(item => {
         const show = filter === 'all' || item.dataset.category === filter;
-        if (show && item.classList.contains('hidden')) newlyShown.push(item);
         item.classList.toggle('hidden', !show);
       });
 
       applyPageLimit();
-
-      // 실제로 화면에 보이게 될 카드만 순차적으로 열리는 모션 적용
-      const toReveal = newlyShown.filter(item => !item.classList.contains('page-hidden'));
-      toReveal.forEach(item => item.classList.add('revealing'));
-      revealGalleryItems(toReveal, 40);
     });
   });
 }

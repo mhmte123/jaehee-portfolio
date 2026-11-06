@@ -1504,7 +1504,7 @@ body.cursor-mode-off .cursor-mode-toggle {
 }
 
 .gallery {
-  columns: 3;
+  columns: 4;
   column-gap: 1rem;
   /* 카드가 추가될 때 스크롤 기준점이 바뀌지 않도록 함 */
   overflow-anchor: none;
