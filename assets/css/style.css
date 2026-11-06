@@ -1233,25 +1233,15 @@ body.cursor-mode-off .cursor-mode-toggle {
     width: calc(100vw - max(clamp(1.5rem, 5vw, 4rem), calc((100vw - 1280px) / 2 + clamp(1.5rem, 5vw, 4rem))));
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 0 1.5rem 1rem 0;
+    padding: 0 1.5rem 0 0;
     scroll-snap-type: x proximity;
     scroll-padding-left: 0;
     overscroll-behavior-x: contain;
-    scrollbar-width: thin;
-    scrollbar-color: var(--fg3) transparent;
+    scrollbar-width: none;
   }
 
   .uxui .projects-list::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .uxui .projects-list::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .uxui .projects-list::-webkit-scrollbar-thumb {
-    background: var(--fg3);
-    border-radius: 999px;
+    display: none;
   }
 
   .uxui .project-card {
@@ -1445,19 +1435,6 @@ body.cursor-mode-off .cursor-mode-toggle {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 100px;
   color: var(--fg2);
-}
-
-.project-arrow {
-  text-align: right;
-  padding: 0 1.75rem 1.5rem;
-  font-size: 1.25rem;
-  color: var(--fg2);
-  transition: color 0.2s, transform 0.3s var(--ease);
-}
-
-.project-card:hover .project-arrow {
-  color: var(--fg);
-  transform: translate(4px, -4px);
 }
 
 /* ─────────────────────────────────────────
