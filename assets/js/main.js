@@ -24,6 +24,11 @@ const galleryItems = [
   { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_1.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 1', desc: 'SNS 피드 디자인' },
 
   // 배너
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-01.png', category: 'banner', title: '배너 디자인 1', desc: '배너 디자인' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-02.png', category: 'banner', title: '배너 디자인 2', desc: '배너 디자인' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-03.jpg', category: 'banner', title: '배너 디자인 3', desc: '배너 디자인' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-04.jpg', category: 'banner', title: '배너 디자인 4', desc: '배너 디자인' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-05.jpg', category: 'banner', title: '배너 디자인 5', desc: '배너 디자인' },
   { src: 'assets/images/graphic/banner/24clinic.jpg', category: 'banner', title: '24인치의원', desc: 'SNS 피드 디자인' },
   { src: 'assets/images/graphic/banner/aruda.jpg', category: 'banner', title: '아루다', desc: 'SNS 피드 디자인' },
   { src: 'assets/images/graphic/banner/beaverclean.jpg', category: 'banner', title: '비버클린', desc: 'SNS 피드 디자인' },
