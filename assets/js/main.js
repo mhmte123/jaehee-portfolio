@@ -9,146 +9,159 @@
 
 /* ── Gallery Data ── */
 const galleryItems = [
-  // 대표작 (다양한 카테고리 믹스 — 그래픽 디자인 섹션 첫 화면에 보여줄 작업물)
-  { src: 'assets/images/graphic/banner/bluecore.jpg', category: 'banner', title: '블루코어컴퍼니', desc: 'SNS 피드 (AI 이미지 활용)' },
-  { src: 'assets/images/graphic/detail/이수연코스메틱_상세페이지_클렌징파우더.jpg', category: 'detail', title: '이수연코스메틱 상세페이지 클렌징파우더', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_1.jpg', category: 'web', title: '더마름다이어트 메인홈 1', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/package/가인미가_패키지_달력_1.png', category: 'package', title: '가인미가 패키지 달력 1', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/banner/shinhan.jpg', category: 'banner', title: '신한라이프', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/blog/온다패션_블로그 스킨.png', category: 'blog', title: '온다패션 블로그 스킨', desc: '블로그 스킨' },
-  { src: 'assets/images/graphic/detail/hanssem.jpg', category: 'detail', title: '한샘(엠시스)', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/logo/대한명품감정원_로고.jpg', category: 'logo', title: '대한명품감정원 로고', desc: '로고 디자인' },
-  { src: 'assets/images/graphic/web/가인미가_메인홈_1.png', category: 'web', title: '가인미가 메인홈 1', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_패키지_마스크팩.jpg', category: 'package', title: '더마름다이어트 패키지 마스크팩', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/photo/아데스카_사진촬영.png', category: 'photo', title: '아데스카 사진촬영', desc: '사진촬영' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_1.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 1', desc: 'SNS 피드 디자인' },
-
-  // 배너
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-01.png', category: 'banner', title: 'AI 광고 영상 제작', desc: '광고 영상 제작 서비스 프로모션 배너' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-02.png', category: 'banner', title: 'AI 제품 광고 영상', desc: '뷰티 제품 SNS 홍보 배너' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-03.jpg', category: 'banner', title: '도담한방병원 엘라비에 리투오', desc: '병원 시술 프로모션 상세 배너' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-04.jpg', category: 'banner', title: '도담한방병원 남성 제모 이벤트', desc: '11월 오픈 프로모션 상세 배너' },
-  { src: 'assets/images/graphic/banner/banner-2026-11-06-05.jpg', category: 'banner', title: '도담한방병원 여성 제모 이벤트', desc: '11월 오픈 프로모션 상세 배너' },
-  { src: 'assets/images/graphic/banner/24clinic.jpg', category: 'banner', title: '24인치의원', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/aruda.jpg', category: 'banner', title: '아루다', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/beaverclean.jpg', category: 'banner', title: '비버클린', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/hankookjeda.jpg', category: 'banner', title: '한국제다', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/jigumbada.jpg', category: 'banner', title: '지금바다', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/jinyoung.jpg', category: 'banner', title: '진영코리아', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/mayfore.jpg', category: 'banner', title: '메이포레', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/mohyun.jpg', category: 'banner', title: '모현상회', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/mowi.jpg', category: 'banner', title: '모위', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/norani.jpg', category: 'banner', title: '노라니스튜디오', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_리뷰왕이벤트_1.jpg', category: 'banner', title: '가인미가 SNS 리뷰왕이벤트 1', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_시크릿쿠폰.jpg', category: 'banner', title: '가인미가 SNS 시크릿쿠폰', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_신부관리.jpg', category: 'banner', title: '가인미가 SNS 신부관리', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_이벤트.jpg', category: 'banner', title: '가인미가 SNS 이벤트', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_쪼여준다_1.jpg', category: 'banner', title: '가인미가 SNS 쪼여준다 1', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_쪼여준다_2.jpg', category: 'banner', title: '가인미가 SNS 쪼여준다 2', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_첫방문이벤트.jpg', category: 'banner', title: '가인미가 SNS 첫방문이벤트', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_2.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 2', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_3.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 3', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_헤이가인미가.jpg', category: 'banner', title: '가인미가 SNS 헤이가인미가', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/가인미가_SNS_환승얼굴.jpg', category: 'banner', title: '가인미가 SNS 환승얼굴', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_광고배너.jpg', category: 'banner', title: '더마름다이어트 SNS 광고배너', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_그랜드오픈_1.jpg', category: 'banner', title: '더마름다이어트 SNS 그랜드오픈 1', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_그랜드오픈배너_1.jpg', category: 'banner', title: '더마름다이어트 SNS 그랜드오픈배너 1', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_그랜드오픈배너_2.jpg', category: 'banner', title: '더마름다이어트 SNS 그랜드오픈배너 2', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_봄날의신부.jpg', category: 'banner', title: '더마름다이어트 SNS 봄날의신부', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_서포터즈.jpg', category: 'banner', title: '더마름다이어트 SNS 서포터즈', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_이벤트.jpg', category: 'banner', title: '더마름다이어트 SNS 이벤트', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_인바디후기.jpg', category: 'banner', title: '더마름다이어트 SNS 인바디후기', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_가을슈즈대전.jpg', category: 'banner', title: '온다패션 가을슈즈대전', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_가을자켓 아우터 기획전.jpg', category: 'banner', title: '온다패션 가을자켓 아우터 기획전', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_겨울 패딩 아우터 기획전.jpg', category: 'banner', title: '온다패션 겨울 패딩 아우터 기획전', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_겨울 패딩 아우터 기획전_2.jpg', category: 'banner', title: '온다패션 겨울 패딩 아우터 기획전 2', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_나만없어명품패딩.jpg', category: 'banner', title: '온다패션 나만없어명품패딩', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_버버리 블로그 배너.jpg', category: 'banner', title: '온다패션 버버리 블로그 배너', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_샤넬구매대행.jpg', category: 'banner', title: '온다패션 샤넬구매대행', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_슈퍼위크.jpg', category: 'banner', title: '온다패션 슈퍼위크', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_온다세일게임.jpg', category: 'banner', title: '온다패션 온다세일게임', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_위클리특가전.jpg', category: 'banner', title: '온다패션 위클리특가전', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_지갑 기획전.jpg', category: 'banner', title: '온다패션 지갑 기획전', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_채용공고이미지_1.jpg', category: 'banner', title: '온다패션 채용공고이미지 1', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_채용공고이미지_2.jpg', category: 'banner', title: '온다패션 채용공고이미지 2', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_크록스 기획전_1.jpg', category: 'banner', title: '온다패션 크록스 기획전 1', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_크록스 기획전_2.png', category: 'banner', title: '온다패션 크록스 기획전 2', desc: 'SNS 피드 디자인' },
-  { src: 'assets/images/graphic/banner/온다패션_포토리뷰.jpg', category: 'banner', title: '온다패션 포토리뷰', desc: 'SNS 피드 디자인' },
-  // 상세페이지
-  { src: 'assets/images/graphic/detail/fly365.jpg', category: 'detail', title: '플라이삼육오', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_PC_1.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 PC 1', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_PC_2.gif', category: 'detail', title: '교보핫트랙스 굿나잇라이트 PC 2', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_PC_3.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 PC 3', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_모바일_1.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 모바일 1', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_모바일_2.gif', category: 'detail', title: '교보핫트랙스 굿나잇라이트 모바일 2', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_모바일_3.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 모바일 3', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_기분좋은선택_PC.jpg', category: 'detail', title: '교보핫트랙스 기분좋은선택 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_기분좋은선택_모바일.jpg', category: 'detail', title: '교보핫트랙스 기분좋은선택 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_기억보관함노트_PC.jpg', category: 'detail', title: '교보핫트랙스 기억보관함노트 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_기억보관함노트_모바일.jpg', category: 'detail', title: '교보핫트랙스 기억보관함노트 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_넛츠바_PC.jpg', category: 'detail', title: '교보핫트랙스 넛츠바 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_넛츠바_모바일.jpg', category: 'detail', title: '교보핫트랙스 넛츠바 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_동아_PC.jpg', category: 'detail', title: '교보핫트랙스 동아 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_동아_모바일.jpg', category: 'detail', title: '교보핫트랙스 동아 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_랄랄라타운_PC.jpg', category: 'detail', title: '교보핫트랙스 랄랄라타운 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_랄랄라타운_모바일.jpg', category: 'detail', title: '교보핫트랙스 랄랄라타운 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_로지텍_PC.jpg', category: 'detail', title: '교보핫트랙스 로지텍 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_로지텍_모바일.jpg', category: 'detail', title: '교보핫트랙스 로지텍 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_로투스_PC.jpg', category: 'detail', title: '교보핫트랙스 로투스 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_로투스_모바일.jpg', category: 'detail', title: '교보핫트랙스 로투스 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_PC_1.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 PC 1', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_PC_2.gif', category: 'detail', title: '교보핫트랙스 바디스크럽 PC 2', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_PC_3.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 PC 3', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_모바일_1.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 모바일 1', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_모바일_2.gif', category: 'detail', title: '교보핫트랙스 바디스크럽 모바일 2', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_모바일_3.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 모바일 3', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_배불바_PC.jpg', category: 'detail', title: '교보핫트랙스 배불바 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_배불바_모바일.jpg', category: 'detail', title: '교보핫트랙스 배불바 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_보싸인_PC.jpg', category: 'detail', title: '교보핫트랙스 보싸인 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_보싸인_모바일.jpg', category: 'detail', title: '교보핫트랙스 보싸인 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_북프렌즈_PC.jpg', category: 'detail', title: '교보핫트랙스 북프렌즈 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_북프렌즈_모바일.jpg', category: 'detail', title: '교보핫트랙스 북프렌즈 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_시라쿠스_PC.jpg', category: 'detail', title: '교보핫트랙스 시라쿠스 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_시라쿠스_모바일.jpg', category: 'detail', title: '교보핫트랙스 시라쿠스 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_아케소_PC.jpg', category: 'detail', title: '교보핫트랙스 아케소 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_아케소_모바일.jpg', category: 'detail', title: '교보핫트랙스 아케소 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_에어팟맥스_PC.jpg', category: 'detail', title: '교보핫트랙스 에어팟맥스 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_에어팟맥스_모바일.jpg', category: 'detail', title: '교보핫트랙스 에어팟맥스 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_제티_PC.jpg', category: 'detail', title: '교보핫트랙스 제티 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_제티_모바일.jpg', category: 'detail', title: '교보핫트랙스 제티 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_코스타노바_PC.jpg', category: 'detail', title: '교보핫트랙스 코스타노바 PC', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/교보핫트랙스_코스타노바_모바일.jpg', category: 'detail', title: '교보핫트랙스 코스타노바 모바일', desc: '상세페이지 디자인' },
-  { src: 'assets/images/graphic/detail/한우먹는날_한우등심양념구이.jpg', category: 'detail', title: '한우먹는날 한우등심양념구이', desc: '상세페이지 디자인' },
   // 블로그 스킨
-  { src: 'assets/images/graphic/blog/drawing.jpg', category: 'blog', title: '그림앤나드로잉카페', desc: '네이버 블로그 스킨' },
   { src: 'assets/images/graphic/blog/seoulssuk-naver-blog-skin.png', category: 'blog', title: '서울숙면치과 네이버 블로그 스킨', desc: '네이버 블로그 스킨 디자인' },
-  { src: 'assets/images/graphic/blog/woosung.jpg', category: 'blog', title: '우성건설', desc: '네이버 블로그 스킨' },
+  // 배너
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-05.jpg', category: 'banner', title: '도담한방병원 여성 제모 이벤트', desc: '11월 오픈 프로모션 상세 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-04.jpg', category: 'banner', title: '도담한방병원 남성 제모 이벤트', desc: '11월 오픈 프로모션 상세 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-03.jpg', category: 'banner', title: '도담한방병원 엘라비에 리투오', desc: '병원 시술 프로모션 상세 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-02.png', category: 'banner', title: 'AI 제품 광고 영상', desc: '뷰티 제품 SNS 홍보 배너' },
+  { src: 'assets/images/graphic/banner/banner-2026-11-06-01.png', category: 'banner', title: 'AI 광고 영상 제작', desc: '광고 영상 제작 서비스 프로모션 배너' },
   // 패키지
-  { src: 'assets/images/graphic/package/package.jpg', category: 'package', title: '패키지 디자인', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/가인미가_패키지_달력_2.jpg', category: 'package', title: '가인미가 패키지 달력 2', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_인쇄물_고객관리차트_1.jpg', category: 'package', title: '더마름다이어트 인쇄물 고객관리차트 1', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_인쇄물_고객관리차트_2.jpg', category: 'package', title: '더마름다이어트 인쇄물 고객관리차트 2', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_패키지_든든한끼.jpg', category: 'package', title: '더마름다이어트 패키지 든든한끼', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_패키지_물병.jpg', category: 'package', title: '더마름다이어트 패키지 물병', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_패키지_쇼핑백.jpg', category: 'package', title: '더마름다이어트 패키지 쇼핑백', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_패키지_젤리.jpg', category: 'package', title: '더마름다이어트 패키지 젤리', desc: '패키지 디자인' },
-  { src: 'assets/images/graphic/package/더마름다이어트_패키지_파우더.jpg', category: 'package', title: '더마름다이어트 패키지 파우더', desc: '패키지 디자인' },
   { src: 'assets/images/graphic/package/tofu.jpg', category: 'package', title: '두부만드는집', desc: '패키지 디자인' },
   // 로고
   { src: 'assets/images/graphic/logo/더마름다이어트_로고.png', category: 'logo', title: '더마름다이어트 로고', desc: '로고 디자인' },
+  // 상세페이지
+  { src: 'assets/images/graphic/detail/교보핫트랙스_북프렌즈_모바일.jpg', category: 'detail', title: '교보핫트랙스 북프렌즈 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_북프렌즈_PC.jpg', category: 'detail', title: '교보핫트랙스 북프렌즈 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_로투스_모바일.jpg', category: 'detail', title: '교보핫트랙스 로투스 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_로투스_PC.jpg', category: 'detail', title: '교보핫트랙스 로투스 PC', desc: '상세페이지 디자인' },
+  // 사진촬영
+  { src: 'assets/images/graphic/photo/아데스카_사진촬영.png', category: 'photo', title: '아데스카 사진촬영', desc: '사진촬영' },
+  // 패키지
+  { src: 'assets/images/graphic/package/더마름다이어트_패키지_젤리.jpg', category: 'package', title: '더마름다이어트 패키지 젤리', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_패키지_파우더.jpg', category: 'package', title: '더마름다이어트 패키지 파우더', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_패키지_쇼핑백.jpg', category: 'package', title: '더마름다이어트 패키지 쇼핑백', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_패키지_물병.jpg', category: 'package', title: '더마름다이어트 패키지 물병', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/가인미가_패키지_달력_2.jpg', category: 'package', title: '가인미가 패키지 달력 2', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_패키지_마스크팩.jpg', category: 'package', title: '더마름다이어트 패키지 마스크팩', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_패키지_든든한끼.jpg', category: 'package', title: '더마름다이어트 패키지 든든한끼', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/가인미가_패키지_달력_1.png', category: 'package', title: '가인미가 패키지 달력 1', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_인쇄물_고객관리차트_2.jpg', category: 'package', title: '더마름다이어트 인쇄물 고객관리차트 2', desc: '패키지 디자인' },
+  { src: 'assets/images/graphic/package/더마름다이어트_인쇄물_고객관리차트_1.jpg', category: 'package', title: '더마름다이어트 인쇄물 고객관리차트 1', desc: '패키지 디자인' },
+  // 배너
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_광고배너.jpg', category: 'banner', title: '더마름다이어트 SNS 광고배너', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_그랜드오픈배너_2.jpg', category: 'banner', title: '더마름다이어트 SNS 그랜드오픈배너 2', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_그랜드오픈배너_1.jpg', category: 'banner', title: '더마름다이어트 SNS 그랜드오픈배너 1', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_신부관리.jpg', category: 'banner', title: '가인미가 SNS 신부관리', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_봄날의신부.jpg', category: 'banner', title: '더마름다이어트 SNS 봄날의신부', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_시크릿쿠폰.jpg', category: 'banner', title: '가인미가 SNS 시크릿쿠폰', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_서포터즈.jpg', category: 'banner', title: '더마름다이어트 SNS 서포터즈', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_첫방문이벤트.jpg', category: 'banner', title: '가인미가 SNS 첫방문이벤트', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_3.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 3', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_2.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 2', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_코스메틱배너_1.jpg', category: 'banner', title: '가인미가 SNS 코스메틱배너 1', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_인바디후기.jpg', category: 'banner', title: '더마름다이어트 SNS 인바디후기', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_리뷰왕이벤트_1.jpg', category: 'banner', title: '가인미가 SNS 리뷰왕이벤트 1', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_그랜드오픈_1.jpg', category: 'banner', title: '더마름다이어트 SNS 그랜드오픈 1', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_이벤트.jpg', category: 'banner', title: '가인미가 SNS 이벤트', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/더마름다이어트_SNS_이벤트.jpg', category: 'banner', title: '더마름다이어트 SNS 이벤트', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_쪼여준다_2.jpg', category: 'banner', title: '가인미가 SNS 쪼여준다 2', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_쪼여준다_1.jpg', category: 'banner', title: '가인미가 SNS 쪼여준다 1', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_헤이가인미가.jpg', category: 'banner', title: '가인미가 SNS 헤이가인미가', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/가인미가_SNS_환승얼굴.jpg', category: 'banner', title: '가인미가 SNS 환승얼굴', desc: 'SNS 피드 디자인' },
   // 웹디자인
-  { src: 'assets/images/graphic/web/가인미가_메인홈_2.png', category: 'web', title: '가인미가 메인홈 2', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/가인미가_메인홈_3.png', category: 'web', title: '가인미가 메인홈 3', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/가인미가_메인홈_4.png', category: 'web', title: '가인미가 메인홈 4', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/가인미가_메인홈_5.png', category: 'web', title: '가인미가 메인홈 5', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_7.png', category: 'web', title: '더마름다이어트 메인홈 7', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_6.png', category: 'web', title: '더마름다이어트 메인홈 6', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_5.jpg', category: 'web', title: '더마름다이어트 메인홈 5', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_4.jpg', category: 'web', title: '더마름다이어트 메인홈 4', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_3.jpg', category: 'web', title: '더마름다이어트 메인홈 3', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_2.jpg', category: 'web', title: '더마름다이어트 메인홈 2', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_1.jpg', category: 'web', title: '더마름다이어트 메인홈 1', desc: '웹 디자인' },
   { src: 'assets/images/graphic/web/가인미가_메인홈_6.png', category: 'web', title: '가인미가 메인홈 6', desc: '웹 디자인' },
   { src: 'assets/images/graphic/web/가인미가_메인홈_7.png', category: 'web', title: '가인미가 메인홈 7', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_2.jpg', category: 'web', title: '더마름다이어트 메인홈 2', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_3.jpg', category: 'web', title: '더마름다이어트 메인홈 3', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_4.jpg', category: 'web', title: '더마름다이어트 메인홈 4', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_5.jpg', category: 'web', title: '더마름다이어트 메인홈 5', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_6.png', category: 'web', title: '더마름다이어트 메인홈 6', desc: '웹 디자인' },
-  { src: 'assets/images/graphic/web/더마름다이어트_메인홈_7.png', category: 'web', title: '더마름다이어트 메인홈 7', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/가인미가_메인홈_5.png', category: 'web', title: '가인미가 메인홈 5', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/가인미가_메인홈_4.png', category: 'web', title: '가인미가 메인홈 4', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/가인미가_메인홈_3.png', category: 'web', title: '가인미가 메인홈 3', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/가인미가_메인홈_2.png', category: 'web', title: '가인미가 메인홈 2', desc: '웹 디자인' },
+  { src: 'assets/images/graphic/web/가인미가_메인홈_1.png', category: 'web', title: '가인미가 메인홈 1', desc: '웹 디자인' },
+  // 로고
+  { src: 'assets/images/graphic/logo/대한명품감정원_로고.jpg', category: 'logo', title: '대한명품감정원 로고', desc: '로고 디자인' },
+  // 상세페이지
+  { src: 'assets/images/graphic/detail/한우먹는날_한우등심양념구이.jpg', category: 'detail', title: '한우먹는날 한우등심양념구이', desc: '상세페이지 디자인' },
+  // 배너
+  { src: 'assets/images/graphic/banner/온다패션_채용공고이미지_2.jpg', category: 'banner', title: '온다패션 채용공고이미지 2', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_채용공고이미지_1.jpg', category: 'banner', title: '온다패션 채용공고이미지 1', desc: 'SNS 피드 디자인' },
+  // 상세페이지
+  { src: 'assets/images/graphic/detail/이수연코스메틱_상세페이지_클렌징파우더.jpg', category: 'detail', title: '이수연코스메틱 상세페이지 클렌징파우더', desc: '상세페이지 디자인' },
+  // 블로그 스킨
+  { src: 'assets/images/graphic/blog/온다패션_블로그 스킨.png', category: 'blog', title: '온다패션 블로그 스킨', desc: '블로그 스킨' },
+  // 배너
+  { src: 'assets/images/graphic/banner/온다패션_버버리 블로그 배너.jpg', category: 'banner', title: '온다패션 버버리 블로그 배너', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_크록스 기획전_1.jpg', category: 'banner', title: '온다패션 크록스 기획전 1', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_크록스 기획전_2.png', category: 'banner', title: '온다패션 크록스 기획전 2', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_포토리뷰.jpg', category: 'banner', title: '온다패션 포토리뷰', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_지갑 기획전.jpg', category: 'banner', title: '온다패션 지갑 기획전', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_나만없어명품패딩.jpg', category: 'banner', title: '온다패션 나만없어명품패딩', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_위클리특가전.jpg', category: 'banner', title: '온다패션 위클리특가전', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_온다세일게임.jpg', category: 'banner', title: '온다패션 온다세일게임', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_슈퍼위크.jpg', category: 'banner', title: '온다패션 슈퍼위크', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_샤넬구매대행.jpg', category: 'banner', title: '온다패션 샤넬구매대행', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_겨울 패딩 아우터 기획전_2.jpg', category: 'banner', title: '온다패션 겨울 패딩 아우터 기획전 2', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_겨울 패딩 아우터 기획전.jpg', category: 'banner', title: '온다패션 겨울 패딩 아우터 기획전', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_가을자켓 아우터 기획전.jpg', category: 'banner', title: '온다패션 가을자켓 아우터 기획전', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/온다패션_가을슈즈대전.jpg', category: 'banner', title: '온다패션 가을슈즈대전', desc: 'SNS 피드 디자인' },
+  // 상세페이지
+  { src: 'assets/images/graphic/detail/교보핫트랙스_랄랄라타운_모바일.jpg', category: 'detail', title: '교보핫트랙스 랄랄라타운 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_랄랄라타운_PC.jpg', category: 'detail', title: '교보핫트랙스 랄랄라타운 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_코스타노바_모바일.jpg', category: 'detail', title: '교보핫트랙스 코스타노바 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_코스타노바_PC.jpg', category: 'detail', title: '교보핫트랙스 코스타노바 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_PC_3.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 PC 3', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_PC_2.gif', category: 'detail', title: '교보핫트랙스 굿나잇라이트 PC 2', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_PC_1.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 PC 1', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_모바일_3.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 모바일 3', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_모바일_2.gif', category: 'detail', title: '교보핫트랙스 굿나잇라이트 모바일 2', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_굿나잇라이트_모바일_1.jpg', category: 'detail', title: '교보핫트랙스 굿나잇라이트 모바일 1', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_PC_3.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 PC 3', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_PC_2.gif', category: 'detail', title: '교보핫트랙스 바디스크럽 PC 2', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_PC_1.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 PC 1', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_모바일_3.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 모바일 3', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_모바일_2.gif', category: 'detail', title: '교보핫트랙스 바디스크럽 모바일 2', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_바디스크럽_모바일_1.jpg', category: 'detail', title: '교보핫트랙스 바디스크럽 모바일 1', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_보싸인_모바일.jpg', category: 'detail', title: '교보핫트랙스 보싸인 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_보싸인_PC.jpg', category: 'detail', title: '교보핫트랙스 보싸인 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_시라쿠스_모바일.jpg', category: 'detail', title: '교보핫트랙스 시라쿠스 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_시라쿠스_PC.jpg', category: 'detail', title: '교보핫트랙스 시라쿠스 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_로지텍_모바일.jpg', category: 'detail', title: '교보핫트랙스 로지텍 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_로지텍_PC.jpg', category: 'detail', title: '교보핫트랙스 로지텍 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_배불바_모바일.jpg', category: 'detail', title: '교보핫트랙스 배불바 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_배불바_PC.jpg', category: 'detail', title: '교보핫트랙스 배불바 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_기억보관함노트_모바일.jpg', category: 'detail', title: '교보핫트랙스 기억보관함노트 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_기억보관함노트_PC.jpg', category: 'detail', title: '교보핫트랙스 기억보관함노트 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_제티_모바일.jpg', category: 'detail', title: '교보핫트랙스 제티 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_제티_PC.jpg', category: 'detail', title: '교보핫트랙스 제티 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_기분좋은선택_모바일.jpg', category: 'detail', title: '교보핫트랙스 기분좋은선택 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_기분좋은선택_PC.jpg', category: 'detail', title: '교보핫트랙스 기분좋은선택 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_동아_모바일.jpg', category: 'detail', title: '교보핫트랙스 동아 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_동아_PC.jpg', category: 'detail', title: '교보핫트랙스 동아 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_에어팟맥스_모바일.jpg', category: 'detail', title: '교보핫트랙스 에어팟맥스 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_에어팟맥스_PC.jpg', category: 'detail', title: '교보핫트랙스 에어팟맥스 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_아케소_모바일.jpg', category: 'detail', title: '교보핫트랙스 아케소 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_아케소_PC.jpg', category: 'detail', title: '교보핫트랙스 아케소 PC', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_넛츠바_모바일.jpg', category: 'detail', title: '교보핫트랙스 넛츠바 모바일', desc: '상세페이지 디자인' },
+  { src: 'assets/images/graphic/detail/교보핫트랙스_넛츠바_PC.jpg', category: 'detail', title: '교보핫트랙스 넛츠바 PC', desc: '상세페이지 디자인' },
+  // 패키지
+  { src: 'assets/images/graphic/package/package.jpg', category: 'package', title: '패키지 디자인', desc: '패키지 디자인' },
+  // 배너
+  { src: 'assets/images/graphic/banner/mohyun.jpg', category: 'banner', title: '모현상회', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/jigumbada.jpg', category: 'banner', title: '지금바다', desc: 'SNS 피드 디자인' },
+  // 블로그 스킨
+  { src: 'assets/images/graphic/blog/drawing.jpg', category: 'blog', title: '그림앤나드로잉카페', desc: '네이버 블로그 스킨' },
+  // 상세페이지
+  { src: 'assets/images/graphic/detail/hanssem.jpg', category: 'detail', title: '한샘(엠시스)', desc: '상세페이지 디자인' },
+  // 배너
+  { src: 'assets/images/graphic/banner/mayfore.jpg', category: 'banner', title: '메이포레', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/24clinic.jpg', category: 'banner', title: '24인치의원', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/hankookjeda.jpg', category: 'banner', title: '한국제다', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/shinhan.jpg', category: 'banner', title: '신한라이프', desc: 'SNS 피드 디자인' },
+  // 블로그 스킨
+  { src: 'assets/images/graphic/blog/woosung.jpg', category: 'blog', title: '우성건설', desc: '네이버 블로그 스킨' },
+  // 상세페이지
+  { src: 'assets/images/graphic/detail/fly365.jpg', category: 'detail', title: '플라이삼육오', desc: '상세페이지 디자인' },
+  // 배너
+  { src: 'assets/images/graphic/banner/aruda.jpg', category: 'banner', title: '아루다', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/mowi.jpg', category: 'banner', title: '모위', desc: 'SNS 피드 디자인' },
+  { src: 'assets/images/graphic/banner/beaverclean.jpg', category: 'banner', title: '비버클린', desc: 'SNS 피드 디자인' },
 ];
 
 // Git과 Netlify는 한글 파일명의 유니코드 정규화 형식을 변환하지 않는다.
@@ -536,57 +549,15 @@ function buildGallery() {
     const toReveal = hidden.slice(0, GALLERY_PAGE_SIZE);
     if (!toReveal.length) return;
 
-    // 멀티컬럼(masonry) 레이아웃은 카드가 추가되면 전체가 즉시 재배치된다.
-    // 갤러리를 통째로 가렸다 보여주는 대신, FLIP 기법으로 이미 보이던
-    // 카드는 이전 위치 → 새 위치로 부드럽게 슬라이드시키고, 새로 추가된
-    // 카드만 그 자리에서 펼쳐지듯 열리게 해서 더 자연스럽게 만든다.
-    // 클릭 시점의 스크롤 위치를 기억해 두고, 레이아웃 재배치/포커스 이동으로
-    // 화면이 위아래로 튀지 않도록 고정시킨다.
-    const scrollBefore = window.scrollY;
-    const lockScroll = () => {
-      if (window.scrollY !== scrollBefore) window.scrollTo(0, scrollBefore);
-    };
-
     btn.disabled = true;
-    btn.blur();
-
-    const visibleBefore = [...container.querySelectorAll('.gallery-item')]
-      .filter(el => !el.classList.contains('hidden') && !el.classList.contains('page-hidden'));
-    const firstRects = new Map(visibleBefore.map(el => [el, el.getBoundingClientRect()]));
 
     toReveal.forEach(el => el.classList.remove('page-hidden'));
     updateLoadMore();
-    lockScroll();
-
-    // FLIP(First-Last-Invert-Play): 재배치로 위치가 바뀐 카드만 이전 위치로
-    // 즉시 되돌려 놓는다(애니메이션 없이) — 다음 프레임에서 제자리로 슬라이드.
-    visibleBefore.forEach(el => {
-      const first = firstRects.get(el);
-      const last = el.getBoundingClientRect();
-      const dx = first.left - last.left;
-      const dy = first.top - last.top;
-      if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
-        el.style.transition = 'none';
-        el.style.transform = `translate(${dx}px, ${dy}px)`;
-      }
-    });
-    void container.offsetHeight; // 강제 리플로우로 위 transform을 먼저 적용시킨다
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        lockScroll();
-        visibleBefore.forEach(el => {
-          if (!el.style.transform) return;
-          el.style.transition = 'transform 0.5s var(--ease)';
-          el.style.transform = '';
-          el.addEventListener('transitionend', () => {
-            el.style.transition = '';
-          }, { once: true });
-        });
-        revealGalleryItems(toReveal, 70);
-        setTimeout(() => { btn.disabled = false; }, 420);
-      });
-    });
+    // 기존 카드는 이동시키지 않고, 새 카드만 아래에 추가한다. 이 방식은
+    // 브라우저의 스크롤 보정이나 버튼 포커스 이동을 일으키지 않는다.
+    toReveal.forEach(item => item.classList.add('revealing'));
+    revealGalleryItems(toReveal, 55);
+    setTimeout(() => { btn.disabled = false; }, 360);
   });
 }
 

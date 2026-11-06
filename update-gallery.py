@@ -33,6 +33,9 @@ CATEGORIES = {
 
 IMAGE_EXTS = {'.jpg', '.jpeg', '.png', '.gif', '.webp'}
 
+# 포트폴리오에서 비공개로 전환한 작업물은 이미지 파일을 보관하되 갤러리에는 노출하지 않는다.
+EXCLUDED_FILENAMES = {'bluecore.jpg', 'norani.jpg', 'jinyoung.jpg'}
+
 CAT_LABELS = {
     'banner': '배너',
     'detail': '상세페이지',
@@ -54,6 +57,8 @@ def scan_images():
             continue
         for fname in sorted(os.listdir(abs_path)):
             if os.path.splitext(fname)[1].lower() in IMAGE_EXTS:
+                if fname in EXCLUDED_FILENAMES:
+                    continue
                 src = f"{rel_path}/{fname}"
                 fname_nfc = unicodedata.normalize('NFC', fname)
                 title = os.path.splitext(fname_nfc)[0].replace('-', ' ').replace('_', ' ')
@@ -62,8 +67,9 @@ def scan_images():
                     'category': category,
                     'title': title,
                     'desc': default_desc,
+                    'registered_at': os.path.getmtime(os.path.join(abs_path, fname)),
                 })
-    return found
+    return sorted(found, key=lambda item: item['registered_at'], reverse=True)
 
 
 def read_existing_metadata(js_content):
