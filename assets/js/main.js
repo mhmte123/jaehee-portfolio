@@ -121,6 +121,7 @@ const galleryItems = [
   { src: 'assets/images/graphic/detail/한우먹는날_한우등심양념구이.jpg', category: 'detail', title: '한우먹는날 한우등심양념구이', desc: '상세페이지 디자인' },
   // 블로그 스킨
   { src: 'assets/images/graphic/blog/drawing.jpg', category: 'blog', title: '그림앤나드로잉카페', desc: '네이버 블로그 스킨' },
+  { src: 'assets/images/graphic/blog/seoulssuk-naver-blog-skin.png', category: 'blog', title: '서울숙면치과 네이버 블로그 스킨', desc: '네이버 블로그 스킨 디자인' },
   { src: 'assets/images/graphic/blog/woosung.jpg', category: 'blog', title: '우성건설', desc: '네이버 블로그 스킨' },
   // 패키지
   { src: 'assets/images/graphic/package/package.jpg', category: 'package', title: '패키지 디자인', desc: '패키지 디자인' },
@@ -150,11 +151,8 @@ const galleryItems = [
   { src: 'assets/images/graphic/web/더마름다이어트_메인홈_7.png', category: 'web', title: '더마름다이어트 메인홈 7', desc: '웹 디자인' },
 ];
 
-// macOS에서 저장된 한글 파일 경로는 NFD일 수 있지만, Netlify(Linux) 배포본의
-// 파일명은 NFC로 보존된다. 배포 환경에서도 같은 URL을 요청하도록 한 가지 형식으로 통일한다.
-galleryItems.forEach(item => {
-  item.src = item.src.normalize('NFC');
-});
+// Git과 Netlify는 한글 파일명의 유니코드 정규화 형식을 변환하지 않는다.
+// 따라서 디스크에 저장된 경로를 그대로 요청해야 macOS에서 만든 NFD 파일명도 정상 표시된다.
 
 function getGalleryThumbnail(src) {
   if (!src.startsWith('assets/images/graphic/')) return src;
