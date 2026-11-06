@@ -1225,12 +1225,38 @@ body.cursor-mode-off .cursor-mode-toggle {
   gap: 1.5rem;
 }
 
-/* UX/UI 프로젝트는 데스크톱에서 한 줄로 보여 주되, 카드 영역만 오른쪽
-   컨테이너 여백까지 확장해 넉넉한 폭을 확보한다. 제목과 섹션 라벨은 기존 정렬 유지. */
+/* UX/UI 프로젝트는 데스크톱에서 콘텐츠 시작점부터 화면 오른쪽 끝까지
+   확장되는 가로 스크롤 트랙으로 표시한다. 제목과 섹션 라벨은 기존 정렬 유지. */
 @media (min-width: 1025px) {
   .uxui .projects-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: calc(100% + clamp(1.5rem, 5vw, 4rem));
+    display: flex;
+    width: calc(100vw - max(clamp(1.5rem, 5vw, 4rem), calc((100vw - 1280px) / 2 + clamp(1.5rem, 5vw, 4rem))));
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 1.5rem 1rem 0;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 0;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--fg3) transparent;
+  }
+
+  .uxui .projects-list::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .uxui .projects-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .uxui .projects-list::-webkit-scrollbar-thumb {
+    background: var(--fg3);
+    border-radius: 999px;
+  }
+
+  .uxui .project-card {
+    flex: 0 0 clamp(360px, 36vw, 540px);
+    scroll-snap-align: start;
   }
 }
 
