@@ -1225,6 +1225,15 @@ body.cursor-mode-off .cursor-mode-toggle {
   gap: 1.5rem;
 }
 
+/* UX/UI 프로젝트는 데스크톱에서 한 줄로 보여 주되, 카드 영역만 오른쪽
+   컨테이너 여백까지 확장해 넉넉한 폭을 확보한다. 제목과 섹션 라벨은 기존 정렬 유지. */
+@media (min-width: 1025px) {
+  .uxui .projects-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: calc(100% + clamp(1.5rem, 5vw, 4rem));
+  }
+}
+
 .project-card {
   background: var(--bg3);
   border: 1px solid var(--border);
