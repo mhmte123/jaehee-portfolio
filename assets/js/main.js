@@ -785,13 +785,15 @@ function initProjectTrackDrag() {
     startX = event.clientX;
     startScrollLeft = track.scrollLeft;
     hasDragged = false;
-    track.setPointerCapture(pointerId);
   });
 
   track.addEventListener('pointermove', event => {
     if (event.pointerId !== pointerId) return;
     const distance = event.clientX - startX;
     if (Math.abs(distance) > 4) {
+      // 일반 클릭의 대상(anchor)을 유지하기 위해, 실제 드래그가 시작된
+      // 뒤에만 포인터를 트랙으로 캡처한다.
+      if (!hasDragged) track.setPointerCapture(pointerId);
       hasDragged = true;
       track.classList.add('is-dragging');
       track.scrollLeft = startScrollLeft - distance;
