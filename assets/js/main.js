@@ -168,11 +168,14 @@ const galleryItems = [
 // 따라서 디스크에 저장된 경로를 그대로 요청해야 macOS에서 만든 NFD 파일명도 정상 표시된다.
 
 function getGalleryThumbnail(src) {
-  if (!src.startsWith('assets/images/graphic/')) return src;
+  // macOS의 한글 파일명(NFD)과 Git/Netlify의 파일명(NFC) 차이로 인한
+  // 운영 환경 404를 방지한다. 로컬 APFS에서도 NFC 요청은 정상 해석된다.
+  const normalizedSrc = src.normalize('NFC');
+  if (!normalizedSrc.startsWith('assets/images/graphic/')) return normalizedSrc;
   // 세로로 긴 상세페이지는 전체 이미지를 축소하면 카드에서 흐릿해진다.
   // 별도로 만든 고해상도 상단 미리보기(JPEG)를 사용한다.
-  const extension = src.includes('/detail/') ? '.jpg' : '.webp';
-  const relative = src.slice('assets/images/graphic/'.length).replace(/\.[^.]+$/, extension);
+  const extension = normalizedSrc.includes('/detail/') ? '.jpg' : '.webp';
+  const relative = normalizedSrc.slice('assets/images/graphic/'.length).replace(/\.[^.]+$/, extension);
   return `assets/images/graphic/thumbs/${relative}`;
 }
 
