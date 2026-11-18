@@ -339,11 +339,29 @@ function initNav() {
       });
     });
   }
+
+  // 첫 세 섹션의 스냅이 헤더 앵커 이동을 다시 끌어당기지 않도록,
+  // 메뉴 이동은 목표 섹션으로 직접 스크롤한다.
+  document.querySelectorAll('.nav-link, .mobile-nav-link, .nav-logo').forEach(link => {
+    link.addEventListener('click', event => {
+      const href = link.getAttribute('href');
+      if (!href?.startsWith('#')) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      const root = document.documentElement;
+      root.dataset.menuNavigating = 'true';
+      root.classList.remove('intro-snap-enabled');
+      // 브라우저 기본 앵커 이동을 그대로 사용해 단 한 번의 자연스러운 이동으로 처리한다.
+      window.setTimeout(() => { delete root.dataset.menuNavigating; }, 1200);
+    });
+  });
 }
 
 /* ── Scroll Animations ── */
 function initScrollAnimations() {
-  const fadeEls = document.querySelectorAll('.fade-in');
+  // 경력 타임라인은 섹션 단위의 순차 등장 효과로 별도 처리한다.
+  const fadeEls = document.querySelectorAll('.fade-in:not(.timeline-item)');
   if (!fadeEls.length) return;
 
   const observer = new IntersectionObserver(entries => {
@@ -359,6 +377,34 @@ function initScrollAnimations() {
     el.style.transitionDelay = `${(i % 4) * 0.08}s`;
     observer.observe(el);
   });
+}
+
+/* ── Career Timeline Reveal ── */
+function initCareerTimelineReveal() {
+  const timeline = document.querySelector('#career .timeline');
+  if (!timeline) return;
+
+  const items = [...timeline.querySelectorAll('.timeline-item')];
+  if (!items.length) return;
+
+  let hasRevealed = false;
+  const reveal = () => {
+    if (hasRevealed) return;
+    hasRevealed = true;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    items.forEach((item, index) => {
+      window.setTimeout(() => item.classList.add('visible'), reduceMotion ? 0 : index * 150);
+    });
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    reveal();
+    observer.disconnect();
+  }, { threshold: 0.12, rootMargin: '0px 0px -12% 0px' });
+
+  observer.observe(timeline);
 }
 
 /* ── Hero Stats Count-up ── */
@@ -412,17 +458,92 @@ function initHeroStats() {
   if (!statsEl) return;
 
   let played = false;
+  const playCountUp = () => {
+    if (played) return;
+    played = true;
+    items.forEach((item, i) => setTimeout(() => animateCountUp(item, 1400), i * 120));
+  };
+
+  // Swarm 프리뷰가 켜져 있으면 숫자 타이핑이 끝난 뒤 카운트업을 시작한다.
+  // 그렇지 않은 일반 페이지에서는 기존처럼 화면 진입 시 시작한다.
+  if (document.getElementById('heroSwarmLayer')) {
+    window.addEventListener('heroSwarmStatsReady', playCountUp, { once: true });
+    return;
+  }
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !played) {
-        played = true;
         const startDelay = 1000; // 화면에 보이고 1초 뒤부터 카운트업 시작
-        items.forEach((item, i) => setTimeout(() => animateCountUp(item, 1400), startDelay + i * 120));
+        setTimeout(playCountUp, startDelay);
         observer.unobserve(statsEl);
       }
     });
   }, { threshold: 0.3 });
   observer.observe(statsEl);
+}
+
+/* ── One-page scroll for Hero → About → UX/UI ── */
+function initIntroSectionScroll() {
+  if (window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches) return;
+
+  const sections = ['hero', 'about', 'uxui']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if (sections.length < 2) return;
+
+  const root = document.documentElement;
+  root.classList.add('intro-snap-enabled');
+  let isSnapping = false;
+  let unlockTimer;
+  const deferUnlock = () => {
+    window.clearTimeout(unlockTimer);
+    unlockTimer = window.setTimeout(() => { isSnapping = false; }, 320);
+  };
+  const closestSectionIndex = () => {
+    const viewportCenter = window.scrollY + window.innerHeight * 0.45;
+    return sections.reduce((closest, section, index) => (
+      Math.abs(section.offsetTop - viewportCenter) < Math.abs(sections[closest].offsetTop - viewportCenter)
+        ? index
+        : closest
+    ), 0);
+  };
+
+  document.addEventListener('wheel', event => {
+    if (event.ctrlKey || event.deltaY === 0) return;
+    // 트랙패드 관성으로 이어지는 wheel 이벤트가 다음 섹션까지 넘기지 않도록 막는다.
+    if (isSnapping) {
+      event.preventDefault();
+      deferUnlock();
+      return;
+    }
+    if (document.querySelector('.gallery-modal.open, .resume-modal.open')) return;
+
+    const index = closestSectionIndex();
+    // UX/UI 섹션을 지난 뒤에는 일반 스크롤을 유지한다.
+    if (index === sections.length - 1 && event.deltaY > 0) {
+      root.classList.remove('intro-snap-enabled');
+      return;
+    }
+    if (index === sections.length - 1 && window.scrollY > sections[index].offsetTop + 120) return;
+    const nextIndex = event.deltaY > 0 ? index + 1 : index - 1;
+    if (nextIndex < 0 || nextIndex >= sections.length) return;
+
+    event.preventDefault();
+    isSnapping = true;
+    sections[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (nextIndex === sections.length - 1) {
+      window.setTimeout(() => root.classList.remove('intro-snap-enabled'), 720);
+    }
+    deferUnlock();
+  }, { passive: false, capture: true });
+
+  window.addEventListener('scroll', () => {
+    if (root.dataset.menuNavigating === 'true') return;
+    if (window.scrollY < sections[sections.length - 1].offsetTop - 80) {
+      root.classList.add('intro-snap-enabled');
+    }
+  }, { passive: true });
 }
 
 /* ── About 섹션 핵심 역량 퍼센트 Count-up ── */
@@ -457,9 +578,9 @@ function buildGallery() {
   if (!container) return;
 
   const groupedItems = getGroupedGalleryItems();
-  groupedItems.forEach(item => {
+  groupedItems.forEach((item, index) => {
     const el = document.createElement('div');
-    el.className = 'gallery-item';
+    el.className = 'gallery-item gallery-item--pending';
     el.setAttribute('role', 'button');
     el.setAttribute('tabindex', '0');
     el.setAttribute('aria-label', `${item.title} 상세 보기`);
@@ -468,10 +589,12 @@ function buildGallery() {
     el.dataset.title = item.title;
     el.dataset.desc  = item.variants.length > 1 ? `${item.desc} · ${item.variants.length}개 시리즈` : item.desc;
     el.dataset.variants = JSON.stringify(item.variants);
+    el.dataset.order = String(index);
 
     const img = document.createElement('img');
     img.alt = item.title;
-    img.loading = 'lazy';
+    // 메뉴 앵커 이동 중 갤러리 높이가 변하지 않도록 썸네일 높이를 미리 확정한다.
+    img.loading = 'eager';
     img.decoding = 'async';
 
     img.onerror = () => {
@@ -496,8 +619,91 @@ function buildGallery() {
     container.appendChild(el);
   });
 
+  layoutGalleryColumns();
+
   updateFilterCounts();
 
+}
+
+function getGalleryColumnCount() {
+  if (window.matchMedia('(max-width: 480px)').matches) return 1;
+  return window.matchMedia('(max-width: 1024px)').matches ? 2 : 4;
+}
+
+function layoutGalleryColumns({ packVisible = false } = {}) {
+  const container = document.getElementById('gallery');
+  if (!container) return;
+
+  const items = [...container.querySelectorAll('.gallery-item')]
+    .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order));
+  const columnCount = getGalleryColumnCount();
+  const currentCount = container.querySelectorAll(':scope > .gallery-column').length;
+  if (currentCount === columnCount && !packVisible) return;
+
+  const columns = Array.from({ length: columnCount }, () => {
+    const column = document.createElement('div');
+    column.className = 'gallery-column';
+    return column;
+  });
+  container.replaceChildren(...columns);
+  const visibleItems = packVisible ? items.filter(item => !item.classList.contains('hidden')) : items;
+  const hiddenItems = packVisible ? items.filter(item => item.classList.contains('hidden')) : [];
+  visibleItems.forEach((item, index) => columns[index % columnCount].appendChild(item));
+  hiddenItems.forEach((item, index) => columns[index % columnCount].appendChild(item));
+}
+
+function initGalleryLayout() {
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      const container = document.getElementById('gallery');
+      const currentCount = container?.querySelectorAll(':scope > .gallery-column').length;
+      if (currentCount === getGalleryColumnCount()) return;
+      layoutGalleryColumns({ packVisible: true });
+      if (galleryRevealStarted) {
+        observeGalleryItems([...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')]);
+      }
+    }, 160);
+  }, { passive: true });
+}
+
+let galleryRevealStarted = false;
+let galleryRevealObserver;
+
+function observeGalleryItems(items) {
+  if (!galleryRevealObserver) return;
+  items.forEach(item => {
+    if (!item.classList.contains('is-revealed')) galleryRevealObserver.observe(item);
+  });
+}
+
+function initGalleryReveal() {
+  const section = document.getElementById('graphic');
+  if (!section) return;
+  galleryRevealObserver = new IntersectionObserver(entries => {
+    const entering = entries
+      .filter(entry => entry.isIntersecting && !entry.target.classList.contains('is-revealed'))
+      .map(entry => entry.target)
+      .sort((a, b) => {
+        const aBox = a.getBoundingClientRect();
+        const bBox = b.getBoundingClientRect();
+        return Math.abs(aBox.top - bBox.top) > 8 ? aBox.top - bBox.top : aBox.left - bBox.left;
+      });
+    entering.forEach((item, index) => {
+      item.style.transitionDelay = `${index * 70}ms`;
+      item.classList.add('is-revealed');
+      galleryRevealObserver.unobserve(item);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting) || galleryRevealStarted) return;
+    galleryRevealStarted = true;
+    observeGalleryItems([...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')]);
+    sectionObserver.disconnect();
+  }, { threshold: 0.05 });
+  sectionObserver.observe(section);
 }
 
 function applyPageLimit() {
@@ -543,14 +749,68 @@ function initGalleryFilter() {
 
       const filter = btn.dataset.filter;
       const items = document.querySelectorAll('.gallery-item');
+      const scrollY = window.scrollY;
       items.forEach(item => {
         const show = filter === 'all' || item.dataset.category === filter;
         item.classList.toggle('hidden', !show);
       });
 
+      layoutGalleryColumns({ packVisible: true });
       applyPageLimit();
+      if (galleryRevealStarted) {
+        observeGalleryItems([...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')]);
+      }
+      requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'auto' }));
     });
   });
+}
+
+/* ── UX/UI project track drag ── */
+function initProjectTrackDrag() {
+  const track = document.querySelector('.uxui .projects-list');
+  if (!track || !window.matchMedia('(min-width: 1025px)').matches) return;
+
+  let pointerId;
+  let startX;
+  let startScrollLeft;
+  let hasDragged = false;
+  let suppressClickUntil = 0;
+
+  track.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startScrollLeft = track.scrollLeft;
+    hasDragged = false;
+    track.setPointerCapture(pointerId);
+  });
+
+  track.addEventListener('pointermove', event => {
+    if (event.pointerId !== pointerId) return;
+    const distance = event.clientX - startX;
+    if (Math.abs(distance) > 4) {
+      hasDragged = true;
+      track.classList.add('is-dragging');
+      track.scrollLeft = startScrollLeft - distance;
+      event.preventDefault();
+    }
+  });
+
+  const endDrag = event => {
+    if (event.pointerId !== pointerId) return;
+    if (track.hasPointerCapture(pointerId)) track.releasePointerCapture(pointerId);
+    if (hasDragged) suppressClickUntil = Date.now() + 160;
+    pointerId = undefined;
+    track.classList.remove('is-dragging');
+  };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('click', event => {
+    if (Date.now() < suppressClickUntil) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
 }
 
 /* ── Active Nav Link Highlight ── */
@@ -598,13 +858,15 @@ function initGalleryModal() {
   let imageLoadToken = 0;
 
   function getVisibleItems() {
-    return [...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')].flatMap(el => {
+    return [...document.querySelectorAll('.gallery-item:not(.hidden):not(.page-hidden)')]
+      .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order))
+      .flatMap(el => {
       try {
         return JSON.parse(el.dataset.variants || '[]');
       } catch (error) {
         return [{ src: el.dataset.src, title: el.dataset.title, desc: el.dataset.desc }];
       }
-    });
+      });
   }
 
   function openModal(index) {
@@ -743,7 +1005,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initNav();
   initScrollAnimations();
+  initCareerTimelineReveal();
   initHeroStats();
+  initIntroSectionScroll();
   initSkillBarCounts();
 
   // Hero name 해독 효과는 assets/js/decrypted-text.js에서 독립적으로 처리
@@ -751,7 +1015,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Gallery
   buildGallery();
   applyPageLimit();
+  initGalleryLayout();
+  initGalleryReveal();
   initGalleryFilter();
+  initProjectTrackDrag();
   initGalleryModal();
   initResumeModal();
   initActiveNavHighlight();
@@ -785,17 +1052,5 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
-    // Timeline items stagger
-    gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-      gsap.fromTo(item,
-        { y: 30, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.8,
-          ease: 'power2.out',
-          delay: i * 0.05,
-          scrollTrigger: { trigger: item, start: 'top 88%' }
-        }
-      );
-    });
   }
 });

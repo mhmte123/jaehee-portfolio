@@ -18,6 +18,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16.png">
   <link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+  <script>
+    // 새로고침·뒤로 가기 캐시 복원 시에도 항상 포트폴리오 최상단에서 시작한다.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const resetPageScroll = () => window.scrollTo(0, 0);
+    window.addEventListener('load', resetPageScroll, { once: true });
+    window.addEventListener('pageshow', resetPageScroll);
+  </script>
 </head>
 
 <body>
@@ -41,7 +48,6 @@
     <ul class="nav-links">
       <li><a href="#hero" class="nav-logo nav-logo--capsule">JH<span class="nav-logo-dot">.</span></a></li>
       <li><a href="#about" class="nav-link">소개</a></li>
-      <li><a href="#process" class="nav-link">프로세스</a></li>
       <li><a href="#uxui" class="nav-link">UX/UI</a></li>
       <li><a href="#graphic" class="nav-link">그래픽</a></li>
       <li><a href="#career" class="nav-link">경력</a></li>
@@ -56,7 +62,6 @@
   <div class="mobile-menu" id="mobileMenu">
     <nav class="mobile-nav">
       <a href="#about" class="mobile-nav-link">소개</a>
-      <a href="#process" class="mobile-nav-link">프로세스</a>
       <a href="#uxui" class="mobile-nav-link">UX/UI</a>
       <a href="#graphic" class="mobile-nav-link">그래픽</a>
       <a href="#career" class="mobile-nav-link">경력</a>
@@ -110,6 +115,9 @@
       <span class="hero-scroll-text">Scroll</span>
       <div class="hero-scroll-line"></div>
     </div>
+
+    <!-- 로컬 미리보기용: 배포 전에는 Swarm 스타일 히어로 조립 효과를 이 버튼으로만 확인한다. -->
+<div class="hero-swarm-layer" id="heroSwarmLayer" aria-hidden="true"></div>
 
   </section>
 
@@ -181,44 +189,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" class="section process">
-    <div class="container">
-      <span class="section-label">Process</span>
-      <h2 class="section-heading">일하는 방식</h2>
-      <div class="process-grid">
-        <div class="process-card fade-in">
-          <div class="process-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </div>
-          <h3>발견</h3>
-          <p>이해하기</p>
-        </div>
-        <div class="process-card fade-in">
-          <div class="process-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="0.5" fill="currentColor"></circle></svg>
-          </div>
-          <h3>정의</h3>
-          <p>문제 정의</p>
-        </div>
-        <div class="process-card fade-in">
-          <div class="process-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-          </div>
-          <h3>설계</h3>
-          <p>아이디어 구체화</p>
-        </div>
-        <div class="process-card fade-in">
-          <div class="process-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="9"></circle></svg>
-          </div>
-          <h3>검증</h3>
-          <p>지속적 개선</p>
         </div>
       </div>
     </div>
@@ -764,11 +734,12 @@
   <script src="assets/js/volumetric-beams.js" defer></script>
   <script src="assets/js/border-glow.js" defer></script>
   <script src="assets/js/glass-surface.js" defer></script>
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js?v=20261118-12" defer></script>
   <script src="assets/js/decrypted-text.js" defer></script>
   <script src="assets/js/fuzzy-text.js" defer></script>
   <script src="assets/js/splash-cursor.js" defer></script>
   <script src="assets/js/cursor-mode.js" defer></script>
+  <script src="assets/js/hero-swarm-preview.js?v=20261118-2" defer></script>
 </body>
 
 </html>
