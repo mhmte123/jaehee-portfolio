@@ -1323,7 +1323,8 @@ body.swarm-demo-active .swarm-build-target.swarm-built {
   width: 0;
   border-radius: 4px;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
-  transition: width 1.1s var(--ease) 0.15s;
+  /* 전용 선형 이징으로 중간에 확 차오르는 느낌 없이 일정하게 상승한다. */
+  transition: width 3s linear 0.15s;
 }
 
 .fade-in.visible .skill-bar-fill {
@@ -2649,6 +2650,13 @@ body.swarm-demo-active .swarm-build-target.swarm-built {
 }
 
 @media (max-width: 768px) {
+  /* 모바일은 카드의 화면 진입 타이밍이 브라우저마다 달라질 수 있어
+     관찰 애니메이션을 기다리지 않고 즉시 표시한다. */
+  .gallery-item--pending {
+    opacity: 1;
+    transform: none;
+  }
+
   .nav-links {
     display: none;
   }

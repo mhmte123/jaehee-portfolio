@@ -566,8 +566,8 @@ function initSkillBarCounts() {
     entries.forEach(entry => {
       if (entry.isIntersecting && !played) {
         played = true;
-        // 막대 채워지는 애니메이션(1.1s, 0.15s 지연)과 맞춰 함께 차오르게 한다.
-        items.forEach((item, i) => setTimeout(() => animateCountUp(item, 1100), 150 + i * 60));
+        // 막대 채워지는 애니메이션(2.2s, 0.15s 지연)과 맞춰 함께 차오르게 한다.
+        items.forEach((item, i) => setTimeout(() => animateCountUp(item, 2200), 150 + i * 60));
         observer.unobserve(container);
       }
     });

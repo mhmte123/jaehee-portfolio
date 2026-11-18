@@ -5,6 +5,13 @@
   const layer = document.getElementById('heroSwarmLayer');
   if (!hero || !layer) return;
 
+  // 모바일에서는 히어로 원본 애니메이션을 그대로 사용한다. 작은 화면에서
+  // Swarm 오버레이가 타이핑 대상의 최종 표시 상태와 충돌하는 것을 방지한다.
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    layer.remove();
+    return;
+  }
+
   // 히어로 밖에 있는 fixed 헤더까지 같은 좌표계에서 조립하기 위해,
   // 오버레이를 body 직속의 화면 레이어로 이동한다.
   document.body.appendChild(layer);
